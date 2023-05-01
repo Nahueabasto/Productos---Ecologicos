@@ -20,9 +20,7 @@ const getApi = async() => {
       };
     });
     return info;
-}
-
-  
+}  
 
 module.exports = {
     getApi,
