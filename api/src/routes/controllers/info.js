@@ -1,5 +1,5 @@
 const axios = require("axios");
-const { Products, Linea } = require("../../db");
+const { Products, Line } = require("../../db");
 
 
 const getApi = async() => {
@@ -21,6 +21,7 @@ const getApi = async() => {
     });
     return info;
 }  
+
 
 module.exports = {
     getApi,

@@ -3,7 +3,7 @@ const router = Router();
 const { getApi } = require("./controllers/info.js");
 
 
-router.get('/', async (req, res) => {
+router.get('/products', async (req, res) => {
     try {
         let { name } = req.query;
         const result = await getApi(name);
