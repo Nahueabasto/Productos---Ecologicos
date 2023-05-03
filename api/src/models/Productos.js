@@ -5,10 +5,9 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('products', {
     id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
-      allowNull: false
+      type: DataTypes.UUID, //identificador unico universal
+      defaultValue: DataTypes.UUIDV4,//MySQL no tiene un tipo UUID navito por lo tanto lo convierte, sequelize proporciona UUIDV1 Y UUIDV4 como valor predeterminado para las columnas de tipo UUID.
+      primaryKey: true, //identifica de forma unica cada registro de una tabla,
     },
     name: {
       type: DataTypes.STRING,
@@ -27,7 +26,7 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     details: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(500),
       allowNull: false,
     },
     linea:{
