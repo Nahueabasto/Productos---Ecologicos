@@ -1,7 +1,6 @@
 const { Router } = require('express');
 const { Line } = require("../db");
 const { api } = require("./controllers/infoApis")
-
 const router = Router();
 
 
