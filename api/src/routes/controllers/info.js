@@ -25,4 +25,3 @@ return products;
 module.exports = {
     getApi,
   };
-  
