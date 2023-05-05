@@ -14,8 +14,8 @@ const getApi = async () => {
         price: el.price,
         stock: el.stock,
         details: el.details,
-        linea: el.linea,
-        marca: el.marca,
+        line: el.line,
+        brand: el.brand,
       };
     });
 return products;
