@@ -4,11 +4,11 @@ const { Router } = require('express');
 
 
 const router = Router();     
-const getProducts = require("./getProducts");
-const getLine = require("./getLine");
+const Products = require("./Products");
+const getLine = require("./Line");
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
-router.use("/", getProducts);
+router.use("/products", Products);
 router.use("/", getLine);
 
 module.exports = router;
