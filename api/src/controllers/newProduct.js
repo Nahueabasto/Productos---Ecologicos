@@ -16,11 +16,6 @@ const newProduct = async function (name, price, image, stock, details, line, bra
     },
   });
 
-  const statesMatch = await Brand.findAll({
-    where: {
-      name: brand,
-    },
-  });
  
  
   // console.log(typesMatch)
@@ -42,9 +37,7 @@ const newProduct = async function (name, price, image, stock, details, line, bra
     });
     
     //await newProduct.setLine(lineMatch);
-   // await newProduct.setStates(statesMatch);
-    //await newProduct.setRegions(regionsMatch);
-    
+   
 
     return `New box ${name} was created and added successfully`
   } else {

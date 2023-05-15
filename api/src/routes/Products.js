@@ -39,6 +39,16 @@ const { getProducts } = require('../controllers/getProducts.js')
 //     }
 //   });
 
+// router.post('/', async (req, res) => {
+//     const { name, price, image, stock, details, line, brand } = req.body;
+//     try {
+//         let result = await newProduct(name, price, image, stock, details, line, brand)
+//         res.status(200).send({ result })
+//     } catch (error) {
+//         res.status(400).send(error.message)
+//     }
+// })
+
 router.get('/', async (req, res) => {
     try {
         let { name } = req.query;

@@ -1,10 +1,13 @@
 import './App.css';
+import { BrowserRouter } from 'react-router-dom';
 
 function App() {
   return (
+    <BrowserRouter>
     <div className="App">
       <h1>productos ecologicos</h1>
     </div>
+    </BrowserRouter>
   );
 }
 
