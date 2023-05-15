@@ -4,7 +4,7 @@ const { Line } = require("../../db")
 
 const api = async () => {
   try {
-    const allLine = await axios.get('https://6449bfc1a8370fb3213d256e.mockapi.io/api/products')
+    const allLine = await axios.get('https://64504b8dba9f39c6ab7711e4.mockapi.io/api/line')
 
     const lines = allLine.data.map((e) => {
       return {

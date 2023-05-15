@@ -5,7 +5,7 @@ const { Products, Line } = require("../../db");
 const getApi = async () => {
 
     const allProducts = await axios.get(
-      "https://6449bfc1a8370fb3213d256e.mockapi.io/api/products"
+      "https://64504b8dba9f39c6ab7711e4.mockapi.io/api/products"
     );
     const products = allProducts.data.map((el) => {
       return {
