@@ -1,14 +1,19 @@
 import './App.css';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Home from './components/Home';
+
 
 function App() {
   return (
     <BrowserRouter>
     <div className="App">
-      <h1>productos ecologicos</h1>
-    </div>
-    </BrowserRouter>
+    <Switch>
+        <Route path="/home" element={Home} />
+      </Switch>
+      </div>
+      </BrowserRouter>
   );
 }
 
 export default App;
+

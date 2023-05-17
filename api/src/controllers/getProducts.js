@@ -1,19 +1,34 @@
-const { Products, Line, Brand } = require("../db");
+const axios = require("axios");
+//const { Products, Line } = require("./db");
+//const { newProduct } = require('./controllers/newProduct')
 
-const getProducts = async function (name) {
-
-    const productsAll = await Products.findAll({ include:[{model: Line},{ model: Brand}] });
-    if (!name) {  
-        return productsAll;
-    } else {
-        let searchProduct = await productsAll.filter(p => p.name.toLowerCase().includes(name.toLowerCase()));
-        if (searchProduct.length === 0) {
-            throw new Error(`Product with name ${name} not found `)
-        } else {
-            return searchProduct;
-        }
-
+const getApi = async () => {
+    try {
+      const allProducts = await axios.get(
+        "https://6449bfc1a8370fb3213d256e.mockapi.io/api/products"
+      );
+      const products = allProducts.data.map((el) => {
+        return {
+         name: el.name,
+         //images: el.image,
+         price: el.price,
+         stock: el.stock,
+         details: el.details,
+         line: el.line,
+         brand: el.brand,
+        };
+      });
+  
+      console.log('Database Products loaded successfully');
+  
+      return products;
+    } catch (error) {
+      console.log(error);
+      res.send(error);
     }
-}
-
-module.exports = { getProducts }
+  };
+  
+  module.exports = {
+    getApi,
+  };
+  
