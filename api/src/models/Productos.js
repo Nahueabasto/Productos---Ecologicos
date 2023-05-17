@@ -13,10 +13,10 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    image: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
+    // images: {
+    //   type: DataTypes.STRING,
+    //   allowNull: false,
+    // },
     price: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -26,7 +26,7 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     details: {
-      type: DataTypes.STRING(500),
+      type: DataTypes.STRING(2000),
       allowNull: false,
     },
 
