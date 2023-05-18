@@ -9,10 +9,9 @@ const getApi = async () => {
       "https://6449bfc1a8370fb3213d256e.mockapi.io/api/products"
     );
     const products = allProducts.data.map((el) => {
-      const imagesString = el.images.map((image) => `"${image}"`).join(', ');
       return {
         name: el.name,
-        images: imagesString,
+        images: el.images.join(', '), // Convert 'images' array to a string
         price: el.price,
         stock: el.stock,
         details: el.details,
