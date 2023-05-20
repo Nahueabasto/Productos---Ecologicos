@@ -11,12 +11,12 @@ const getApi = async () => {
     const products = allProducts.data.map((el) => {
       return {
         name: el.name,
-        images: el.images.join(', '), // Convert 'images' array to a string
+        images: el.images.join(', '), 
         price: el.price,
         stock: el.stock,
         details: el.details,
-        line: el.line,
-        brand: el.brand,
+       // line: el.line,
+        //brand: el.brand,
       };
     });
 

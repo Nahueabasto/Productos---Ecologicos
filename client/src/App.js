@@ -2,18 +2,18 @@ import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './components/Home';
 
-
 function App() {
   return (
     <BrowserRouter>
-    <div className="App">
-    <Switch>
-        <Route path="/home" element={Home} />
-      </Switch>
+      <div className="App">
+        <Switch>
+          <Route path="/" component={Home} />
+        </Switch>
       </div>
-      </BrowserRouter>
+    </BrowserRouter>
   );
 }
 
 export default App;
+
 
