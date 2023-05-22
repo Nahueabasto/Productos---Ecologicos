@@ -17,7 +17,7 @@ router.get("/products/:id", async (req, res) => {
             attributes: [],
           },
         },
-          attributes: ["id", "name", "price", "stock", "details" ],
+          attributes: ["id", "name", "price", "stock", "details", "images" ],
   
     });
     if (productsDb) {

@@ -1,6 +1,6 @@
 const axios = require("axios");
-//const { Products, Line } = require("./db");
-//const { newProduct } = require('./controllers/newProduct')
+const { Products, Line, Brand } = require("../db");
+
 
 
 const getApi = async () => {
@@ -15,7 +15,7 @@ const getApi = async () => {
         price: el.price,
         stock: el.stock,
         details: el.details,
-       // line: el.line,
+        //line: el.line,
         //brand: el.brand,
       };
     });
@@ -29,6 +29,27 @@ const getApi = async () => {
   }
 };
 
+const getDb = async () => {
+  return await Products.findAll({
+    include: Line,
+    attributes: ['id', 'name'],
+    through: {
+      attributes: []
+    }
+  });
+}
+
+const allInfo = async () => {
+  try{
+  const apiInfo = await getApi();
+  const dbInfo = await getDb();
+  return apiInfo.concat(dbInfo);
+} catch (error) {
+  return error;
+};
+}
+
 module.exports = {
   getApi,
+  allInfo,
 };
