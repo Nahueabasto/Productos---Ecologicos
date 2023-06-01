@@ -9,7 +9,7 @@ export default function Navbar(){
         <header>  
                 <div className="logo"></div>
                 <div className="SearchBar"> <SearchBar /> </div>
-                <h2 className="">"tenes que buscarle otro nombre "obviamente despues acomodaremos todo mejor de acuerdo a como hacemos el diseño" </h2>
+                <h2 className="">"tenemos que buscarle otro nombre "obviamente despues acomodaremos todo mejor de acuerdo a como hacemos el diseño" </h2>
         </header>
     )
 }
