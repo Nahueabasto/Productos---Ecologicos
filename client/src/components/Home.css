@@ -1,0 +1,37 @@
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 180px; /* Espaciado entre las tarjetas */
+    margin-top: 20px;
+    margin-left: 20px;
+  }
+
+  .card-content:hover {
+    transform: translateY(-5px); /* Mueve la tarjeta hacia arriba 5px */
+  }
+  
+  .card-container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border: 1px solid rgb(85, 84, 84);
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    width: 300px;
+    height: 300px;
+    margin-left: 100px;
+  }
+
+  .card-content h2 {
+    margin-top: 5px;
+    font-size: 18px;
+    font-family: "Poppins", sans-serif;
+    font-weight: bold;
+    color: #333;
+    text-align: center; /* Centrar el texto horizontalmente */
+    display: inline-block; /* Hacer que el texto ocupe todo el ancho disponible */
+    width: 200%; /* Ancho completo de la tarjeta */
+  }
+
+  

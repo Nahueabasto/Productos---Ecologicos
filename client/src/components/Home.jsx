@@ -3,7 +3,8 @@ import { useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { getProducts } from '../Redux/Actions';
 import Card from './Card';
-//import { Link } from "react-router-dom";
+import Navbar from "./Navbar";
+import "./Home.css";
 
 export default function Home() {
     const dispatch = useDispatch()
@@ -15,19 +16,24 @@ export default function Home() {
 
     return (
         <div>
+            <div>
+                <Navbar />
+            </div>
+        <div>
             <div className="cards-container">
                 {allProducts?.map((el) => {
                     return (
                         <div key={el.id}>
                             <Card
-                                name={el.name}
                                 images={el.images}
+                                name={el.name}
                                 id={el.id}
                             />
                         </div>
                     );
                 })}
             </div>
+        </div>
         </div>
     )
 }
