@@ -5,6 +5,7 @@
   gap: 180px; /* Espaciado entre las tarjetas */
   margin-top: 20px;
   margin-left: 20px;
+  font-family: 'Raleway', sans-serif;
 }
 
 .card-content:hover {
@@ -21,14 +22,15 @@
   width: 300px;
   height: 300px;
   margin-left: 100px;
+  font-family: 'Raleway', sans-serif;
 }
 
 .card-content h2 {
   margin-top: 5px;
   font-size: 18px;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-weight: bold;
-  color: #333;
+  color: #1a1919;
   text-align: center; /* Centrar el texto horizontalmente */
   display: inline-block; /* Hacer que el texto ocupe todo el ancho disponible */
   width: 200%; /* Ancho completo de la tarjeta */

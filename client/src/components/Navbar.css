@@ -5,6 +5,7 @@ header{
     background-color: #f3efef;
     align-items: center;
     padding: 5px;
+    font-family: 'Raleway', sans-serif;
 }
 
 .SearchBar{
@@ -15,4 +16,9 @@ header{
 h2{
     display: flex;
     font-size: 100%;
+    font-family: 'Raleway', sans-serif;
+}
+
+.logoeco{
+    padding: 5px;
 }
