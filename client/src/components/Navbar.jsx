@@ -2,6 +2,7 @@ import React from "react";
 import SearchBar from "./SearchBar";
 import "./Navbar.css";
 import EcoEcho from "../Fotos/EcoEcho.png"
+import { Link } from "react-router-dom";
 
 export default function Navbar(){
 
@@ -12,7 +13,9 @@ export default function Navbar(){
                 <div className="logo"></div>
                 <div className="SearchBar"> <SearchBar /> </div>
                 <h2 className="">EcoEcho - ecological products </h2>
+                <Link to='/'>
                 <img className="logoeco" src={EcoEcho} alt="EcoEcho" width="90" height="90"></img>
+                </Link>
         </header>
     )
 }
