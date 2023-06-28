@@ -18,11 +18,12 @@ export function getDetail(id){
     return async function(dispatch){
       try {
           // Validar que el id sea una cadena de caracteres válida
-          if (id.length === 0) {
+          if (typeof id !== 'string' || id.length === 0) {
             throw new Error("El id debe ser una cadena de caracteres no vacía");
           }
   
           let productDetail = await axios.get(`http://localhost:3001/products/${id}`)
+          console.log(productDetail.data);
           
           return dispatch({
               type: 'GET_PRODUCT_DETAIL',
