@@ -10,3 +10,7 @@
   height: 250px; /* Altura fija para las imágenes */
   object-fit: cover; /* Ajustar la imagen al tamaño sin distorsión */
 }
+
+.imagenes{
+  border-radius: 15px;
+}

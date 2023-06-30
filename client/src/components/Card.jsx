@@ -33,7 +33,7 @@ export default function Card({ id, images, name }) {
       <Link to={`/products/${id}`} className="card-link">
         <div className="card-content">
           {/* Mostrar solo la primera URL de imagen */}
-          <img src={firstImageUrl} alt="no" />
+          <img src={firstImageUrl} alt="no" className="imagenes"/>
           <h2 className="cardName">{name}</h2>
         </div>
       </Link>

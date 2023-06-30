@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { getProducts } from '../Redux/Actions';
 import Card from './Card';
 import Navbar from "./Navbar";
+import Menu from "./Menu";
 import "./Home.css";
 
 export default function Home() {
@@ -19,6 +20,10 @@ export default function Home() {
             <div>
                 <Navbar />
             </div>
+            <div>
+                <Menu />
+            </div>
+            <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet"></link>
         <div>
             <div className="cards-container">
                 {allProducts?.map((el) => {

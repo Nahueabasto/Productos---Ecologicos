@@ -1,15 +1,21 @@
 import React from "react";
 import SearchBar from "./SearchBar";
-import "./Navbar.css"
+import "./Navbar.css";
+import EcoEcho from "../Fotos/EcoEcho.png"
+import { Link } from "react-router-dom";
 
 export default function Navbar(){
 
 
     return(
         <header>  
+            <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet"></link>
                 <div className="logo"></div>
                 <div className="SearchBar"> <SearchBar /> </div>
-                <h2 className="">"tenemos que buscarle otro nombre "obviamente despues acomodaremos todo mejor de acuerdo a como hacemos el diseño" </h2>
+                <h2 className="">EcoEcho - ecological products </h2>
+                <Link to='/'>
+                <img className="logoeco" src={EcoEcho} alt="EcoEcho" width="90" height="90"></img>
+                </Link>
         </header>
     )
 }
