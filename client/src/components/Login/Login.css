@@ -1,0 +1,15 @@
+.user-icon-wrapper {
+    filter: brightness(0%); /* Inicialmente, establece la imagen en negro */
+    transition: filter 0.3s ease; /* Agrega una transición suave */
+  }
+  
+  .user-icon-wrapper:hover {
+    filter: brightness(100%); /* Al pasar el mouse, aclara la imagen al 100% */
+  }
+  
+  .user-icon {
+    color: black; /* Establece el color del icono en negro */
+    font-size: 19px; /* Cambia el tamaño de fuente a tu preferencia */
+    /* Agrega otros estilos personalizados según tus necesidades */
+  }
+  

@@ -1,0 +1,36 @@
+.search-bar {
+    display: flex;
+    align-items: center;
+  }
+  
+  .search-container {
+    display: flex;
+    border: 1px solid rgb(7, 6, 6);
+    border-radius: 3px;
+  }
+  
+  
+  .search-input {
+    border: none;
+    padding: 8px;
+    font-size: 16px;
+    outline: none;
+    flex-grow: 1;
+  }
+  
+  .search-button {
+    background-color: #fdfeff;
+    color: rgb(7, 6, 6);
+    border: none;
+    border-radius: 0 4px 4px 0;
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .search-icon {
+    font-size: 18px;
+  }
+  
+  /* Agrega otros estilos personalizados según tus necesidades */
+  
