@@ -91,7 +91,7 @@ const { allInfo } = require('../controllers/getProducts.js')
 // });
 
 // module.exports = router;
-const { Op } = require('sequelize');
+
 
 router.get('/products', async (req, res) => {
   const { name } = req.query;

@@ -20,11 +20,6 @@ export default function ProductDetail({id}){
             </div>
             <div className="detalle">
               <p class="detalle-texto">Name: {details.name}</p>
-              <p class="detalle-texto">Price: {details.price}</p>
-              <p class="detalle-texto">Stock: {details.stock}</p>
-              <p class="detalle-texto">Detail: {details.details}</p>
-              <p class="detalle-texto">Line: {details.line}</p>
-              
             </div>
           </div>
         )}

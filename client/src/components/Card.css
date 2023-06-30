@@ -1,18 +1,12 @@
+
 .card-content {
-    width: 150px; /* Ancho deseado para el contenedor */
-    height: 200px; /* Altura deseada para el contenedor */
-    text-align: center; /* Centrar el contenido horizontalmente */
-  }
-  
-  .card-content img {
-    width: 210%; /* Ancho del 100% del contenedor */
-    height: 250px; /* Altura fija para las imágenes */
-    object-fit: cover; /* Ajustar la imagen al tamaño sin distorsión */
-  }
-  
-  
+  width: 150px; /* Ancho deseado para el contenedor */
+  height: 200px; /* Altura deseada para el contenedor */
+  text-align: center; /* Centrar el contenido horizontalmente */
+}
 
-
-  
-  
-  
+.card-content img {
+  width: 210%; /* Ancho del 100% del contenedor */
+  height: 250px; /* Altura fija para las imágenes */
+  object-fit: cover; /* Ajustar la imagen al tamaño sin distorsión */
+}
