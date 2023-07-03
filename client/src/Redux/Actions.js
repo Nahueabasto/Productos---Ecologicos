@@ -2,6 +2,7 @@ import axios from "axios";
 export const GET_PRODUCTS = 'GET_PRODUCTS';
 export const GET_PRODUCT_DETAIL = 'GET_PRODUCT_DETAIL';
 export const GET_NAME_PRODUCTS = 'GET_NAME_PRODUCTS';
+export const FOOTER = "FOOTER";
 
 export function getProducts(){
     return async function(dispatch){
@@ -40,3 +41,7 @@ export function getDetail(id){
         })
     }
 }
+
+export function toggleDarkMode() {
+    return { type: FOOTER };
+  }

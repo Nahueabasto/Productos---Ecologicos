@@ -5,6 +5,7 @@ import { getProducts } from '../Redux/Actions';
 import Card from './Card';
 import Navbar from "./Navbar";
 import Menu from "./Menu";
+import Footer from "./Footer";
 import "./Home.css";
 
 export default function Home() {
@@ -38,6 +39,9 @@ export default function Home() {
                     );
                 })}
             </div>
+        </div>
+        <div>
+            < Footer />
         </div>
         </div>
     )

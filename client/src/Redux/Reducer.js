@@ -1,8 +1,9 @@
-import { GET_PRODUCTS, GET_PRODUCT_DETAIL, GET_NAME_PRODUCTS } from "./Actions";
+import { GET_PRODUCTS, GET_PRODUCT_DETAIL, GET_NAME_PRODUCTS, FOOTER } from "./Actions";
 
 const initialState = {
     products: [],
     detail: [],
+    footer: false,
 }
 
 function reducer (state = initialState, action) {
@@ -22,6 +23,11 @@ switch (action.type) {
             ...state,
             products: action.payload,
         }
+        case FOOTER:
+      return {
+        ...state,
+        footer: !state.footer,
+      };
 
     default:
         return state

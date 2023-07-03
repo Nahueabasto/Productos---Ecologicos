@@ -1,0 +1,33 @@
+footer {
+    display: flex;
+    background-color: #0c0c0c;
+    padding: 10px 0; /* Alto de Footer */
+    text-align: center;
+    margin-top: 0px;
+    color: white; /* Cambia el color del texto a blanco */
+    flex-direction: column;
+  }
+  
+  .container {
+    max-width: 1500px;
+    margin: auto;
+    align-items: stretch;;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 10px;
+    padding-bottom: 60px;
+  }
+
+  .container div{
+    width: 300px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+
