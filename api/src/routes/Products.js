@@ -3,7 +3,7 @@ const router = Router();
 const { Products, Line, Brand } = require("../db.js")
 const { allInfo, getDb, getApi } = require('../controllers/getProducts.js')
 
-const { Op } = require('sequelize');
+
 
 router.get('/products', async (req, res) => {
   const { name } = req.query;
@@ -98,6 +98,8 @@ router.get("/:id", async (req, res) => {
 
 
 module.exports = router;
+
+
 
 
 

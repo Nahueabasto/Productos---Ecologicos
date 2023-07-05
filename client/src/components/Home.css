@@ -3,8 +3,9 @@
   flex-wrap: wrap;
   justify-content: flex-start;
   gap: 180px; /* Espaciado entre las tarjetas */
-  margin-top: 20px;
+  margin-top: 10px;
   margin-left: 20px;
+  margin-bottom: 180px; /* Ajusta este valor según sea necesario para dejar espacio para el footer */
   font-family: 'Raleway', sans-serif;
 }
 

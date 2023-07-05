@@ -3,6 +3,7 @@ export const GET_PRODUCTS = 'GET_PRODUCTS';
 export const GET_PRODUCT_DETAIL = 'GET_PRODUCT_DETAIL';
 export const GET_NAME_PRODUCTS = 'GET_NAME_PRODUCTS';
 export const GET_LINE_PRODUCTS = 'GET_LINE_PRODUCTS';
+export const FOOTER = "FOOTER";
 
 export function getProducts(){
     return async function(dispatch){
@@ -18,11 +19,7 @@ export function getProducts(){
 export function getDetail(id){
     return async function(dispatch){
       try {
-          // Validar que el id sea una cadena de caracteres válida
-          if (typeof id !== 'string' || id.length === 0) {
-            throw new Error("El id debe ser una cadena de caracteres no vacía");
-          }
-  
+
           let productDetail = await axios.get(`http://localhost:3001/products/${id}`)
           console.log(productDetail.data);
           

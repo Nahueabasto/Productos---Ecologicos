@@ -1,17 +1,18 @@
 const { Router } = require('express');
-const { Line } = require("../db");
+const { Line, Products } = require("../db");
+const { allInfo }  = require('../controllers/getProducts.js')
 
 
 const router = Router();
 
 router.get('/lines', async (req, res) => {
     try {
-        const line = await Line.findAll()
-        res.status(200).send(line)
-    } catch (error) {
-        res.status(400).send(error.message)
-    }
-})
-
+        const lines = await Line.findAll();
+        res.json(lines);
+      } catch (error) {
+        next(error);
+      }
+    });
+    
 
 module.exports = router;

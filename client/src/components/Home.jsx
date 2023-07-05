@@ -5,6 +5,7 @@ import { getProducts, getLineProducts } from '../Redux/Actions';
 import Card from './Card';
 import Navbar from "./Navbar";
 import Menu from "./Menu";
+import Footer from "./Footer";
 import "./Home.css";
 import ProductDetail from "./Details";
 import { Route, Switch } from "react-router-dom";
@@ -51,6 +52,9 @@ export default function Home() {
                     );
                 })}
             </div>
+        </div>
+        <div>
+            < Footer />
         </div>
         </div>
     )
