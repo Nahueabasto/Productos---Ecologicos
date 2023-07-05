@@ -5,12 +5,12 @@ const { Router } = require('express');
 
 const router = Router();     
 const Products = require("./Products");
-const getLine = require("./Line");
-const productsId = require("./productsId");
+const getLine = require("./getLine");
+const Lines = require("./Line");
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 router.use("/", Products);
-router.use("/", getLine);
-router.use("/", productsId);
+router.use("/:lineParam", getLine);
+router.use("/lines", Lines);
 
 module.exports = router;

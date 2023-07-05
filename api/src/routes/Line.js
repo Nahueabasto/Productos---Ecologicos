@@ -5,7 +5,7 @@ const { allInfo }  = require('../controllers/getProducts.js')
 
 const router = Router();
 
-router.get('/line', async (req, res) => {
+router.get('/lines', async (req, res) => {
     try {
         const lines = await Line.findAll();
         res.json(lines);

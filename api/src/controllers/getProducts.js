@@ -10,19 +10,37 @@ const getApi = async () => {
     const allProducts = await axios.get(
       "https://6449bfc1a8370fb3213d256e.mockapi.io/api/products"
     );
-    const products = allProducts.data.map((el) => {
-      return {
-        name: el.name,
-        images: el.images.join(', '), 
-        price: el.price,
-        stock: el.stock,
-        details: el.details,
-        //line: el.line,
-        //brand: el.brand,
-      };
+    const uniqueLines = [...new Set(allProducts.data.map((el) => el.line))];
+    const linePromises = uniqueLines.map(async (line) => {
+      const lineObj = await Line.findOne({ where: { name: line } });
+      return lineObj || Line.create({ name: line });
     });
+    const lines = await Promise.all(linePromises);
 
-    console.log('Database Products loaded successfully');
+    const products = await Promise.all(
+      allProducts.data.map(async (el) => {
+        const lineName = el.line;
+        const line = lines.find((lineObj) => lineObj.name === lineName);
+
+        const product = await Products.create({
+          name: el.name,
+          images: el.images.join(", "),
+          price: el.price,
+          stock: el.stock,
+          details: el.details,
+          size: el.size,
+        });
+
+        // Asociar con la linea!
+        if (line) {
+          await product.addLine(line);
+        }
+
+        return product;
+      })
+    );
+
+    console.log("Database Products loaded successfully");
 
     return products;
   } catch (error) {
@@ -32,13 +50,19 @@ const getApi = async () => {
 };
 
 const getDb = async () => {
-  return await Products.findAll({
-    include: Line,
-    attributes: ['id', 'name'],
-    through: {
-      attributes: []
-    }
-  });
+  try {
+    const products = await Products.findAll({
+      include: Line, // Include the associated Line model
+      attributes: ['id', 'name', 'price', 'stock', 'size', 'details', 'images'], // Specify the desired attributes
+    });
+
+    console.log('Products loaded successfully');
+
+    return products;
+  } catch (error) {
+    console.log(error);
+    res.send(error);
+  }
 }
 
 const allInfo = async () => {

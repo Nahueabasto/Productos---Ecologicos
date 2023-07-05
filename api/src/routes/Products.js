@@ -1,8 +1,7 @@
 const { Router } = require("express");
 const router = Router();
 const { Products, Line, Brand } = require("../db.js")
-const { allInfo } = require('../controllers/getProducts.js')
-
+const { allInfo, getDb, getApi } = require('../controllers/getProducts.js')
 
 
 
@@ -24,6 +23,8 @@ router.get('/products', async (req, res) => {
       );
     }
 
+    
+
     // Si no hay productos en la base de datos, llamar a la función getApi para obtenerlos desde la API
     if (products.length === 0) {
       const info = await allInfo();
@@ -31,9 +32,19 @@ router.get('/products', async (req, res) => {
       // Crear los productos en la base de datos
       await Promise.all(
         info.map(async (product) => {
+
+          const filteredProduct = {
+            name: product.name,
+            price: product.price,
+            stock: product.stock,
+            size: product.size,
+            details: product.details,
+            images: product.images
+          };
+
           const [newProduct, created] = await Products.findOrCreate({
             where: { name: product.name },
-            defaults: product
+            defaults: filteredProduct
           });
           if (!created) {
             await newProduct.update(product);
@@ -57,9 +68,34 @@ router.get('/products', async (req, res) => {
   }
 });
 
+
+router.get("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const product = await Products.findOne({
+      where: {
+        id: id,    
+      },
+      include: {
+        model: Line,
+        through:{
+          attributes: [],
+        },
+      },
+      attributes: ["id", "name", "price", "stock", "size", "details", "images"],
+    });
+
+    if (product) {
+      return res.json(product);
+    } else {
+      throw new Error("Product not found");
+    }
+  } catch (error) {
+    res.status(404).json("You messed up, Lu");
+  }
+  });
+
+
 module.exports = router;
-
-
-
-
 

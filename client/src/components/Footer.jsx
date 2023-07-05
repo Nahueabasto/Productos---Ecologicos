@@ -12,7 +12,7 @@ export default function Footer(){
       <footer>
   <div className="container">
     <div>
-      <img className="logoeco" src={EcoEcho} alt="EcoEcho" width="150" height="150" />
+      <img className="logoeco" src={EcoEcho} alt="EcoEcho" width="200" height="150" />
     </div>
 
     <div className="Informacion">

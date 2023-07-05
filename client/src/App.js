@@ -2,7 +2,11 @@ import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './components/Home';
 import ProductDetail from './components/Details';
+
 import Information from './components/Information';
+
+import Menu from './components/Menu';
+
 
 function App() {
   return (

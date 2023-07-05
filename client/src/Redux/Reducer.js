@@ -1,8 +1,10 @@
-import { GET_PRODUCTS, GET_PRODUCT_DETAIL, GET_NAME_PRODUCTS, FOOTER } from "./Actions";
+import { GET_PRODUCTS, GET_PRODUCT_DETAIL, GET_NAME_PRODUCTS, GET_LINE_PRODUCTS, FOOTER} from "./Actions";
+
 
 const initialState = {
     products: [],
     detail: [],
+    selectedCategory: "",
     footer: false,
 }
 
@@ -22,6 +24,11 @@ switch (action.type) {
         return{
             ...state,
             products: action.payload,
+        }
+    case GET_LINE_PRODUCTS:
+        return{
+            ...state,
+            selectedCategory: action.payload,
         }
         case FOOTER:
       return {

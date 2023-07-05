@@ -2,6 +2,7 @@ import axios from "axios";
 export const GET_PRODUCTS = 'GET_PRODUCTS';
 export const GET_PRODUCT_DETAIL = 'GET_PRODUCT_DETAIL';
 export const GET_NAME_PRODUCTS = 'GET_NAME_PRODUCTS';
+export const GET_LINE_PRODUCTS = 'GET_LINE_PRODUCTS';
 export const FOOTER = "FOOTER";
 
 export function getProducts(){
@@ -40,8 +41,15 @@ export function getDetail(id){
             payload: json.data,
         })
     }
-}
+    
+    }
 
-export function toggleDarkMode() {
-    return { type: FOOTER };
-  }
+    export function getLineProducts(line){
+        return async function(dispatch){
+            let json = await axios.get('http://localhost:3001/' + line)
+            return dispatch({
+                type: GET_LINE_PRODUCTS,
+                payload: json.data
+            })
+        }
+    }
