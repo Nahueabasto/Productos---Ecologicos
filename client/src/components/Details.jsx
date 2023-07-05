@@ -75,8 +75,12 @@ export default function ProductDetail(){
               <p className="detalle-texto">Detail:</p> {details.details}
               <p className="detalle-texto">Line:</p> {details.line}
             </div>
+            
           </div>
         )}
+
+
       </div>
+      
     );
 }
