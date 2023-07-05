@@ -4,7 +4,7 @@ const router = Router();
 const axios = require('axios')
 const { Products, Line, Brand, } = require('../db')
 
-router.get("/:id", async (req, res) => {
+router.get("/products/:id", async (req, res) => {
   try {
     const { id } = req.params.id;
 
