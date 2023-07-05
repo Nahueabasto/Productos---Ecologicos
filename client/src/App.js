@@ -2,7 +2,11 @@ import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './components/Home';
 import ProductDetail from './components/Details';
+
+import Information from './components/Information';
+
 import Menu from './components/Menu';
+
 
 function App() {
   return (
@@ -10,8 +14,8 @@ function App() {
       <div className="App">
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/:id" render={({match}) => <ProductDetail id={match.params.id}/>} />
-          {/*<Route exact path="/products/:line" component={Home} />*/}
+          <Route exact path="/products/:id" render={({match}) => <ProductDetail id={match.params.id}/>} />
+          <Route exact path="/information" component={Information} />
         </Switch>
       </div>
     </BrowserRouter>
