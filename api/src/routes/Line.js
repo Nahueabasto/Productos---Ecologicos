@@ -4,7 +4,7 @@ const { Line } = require("../db");
 
 const router = Router();
 
-router.get('/line', async (req, res) => {
+router.get('/lines', async (req, res) => {
     try {
         const line = await Line.findAll()
         res.status(200).send(line)
