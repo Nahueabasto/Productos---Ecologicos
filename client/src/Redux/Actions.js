@@ -20,7 +20,7 @@ export function getDetail(id){
     return async function(dispatch){
       try {
 
-          let productDetail = await axios.get(`http://localhost:3001/products/${id}`)
+          let productDetail = await axios.get(`http://localhost:3001/${id}`)
           console.log(productDetail.data);
           
           return dispatch({
