@@ -27,6 +27,10 @@ export default function ProductDetail(){
         setSelectedImage(urls[0]);
       }
     }, [details]);
+
+    if (!details) {
+      return <div>Loading...</div>;
+    }
   
     return (
 
@@ -66,7 +70,8 @@ export default function ProductDetail(){
             <div className="detalle">
               <p className="detalle-name">{details.name}</p>
               <p className="detalle-price">${details.price}</p>
-              <p className="detalle-texto">Stock:</p> {details.stock}
+              <p className="detalle-texto">Size:</p> {details.size}
+              <p className="detalle-texto">Brand:</p> {details.brand}
               <p className="detalle-texto">Detail:</p> {details.details}
               <p className="detalle-texto">Line:</p> {details.line}
             </div>
