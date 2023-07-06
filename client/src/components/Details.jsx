@@ -6,6 +6,7 @@ import { getDetail } from "../Redux/Actions";
 import "./Details.css";
 import Navbar from "./Navbar";
 import Menu from "./Menu";
+import Footer from "./Footer";
 
 export default function ProductDetail(){
     const { id } = useParams()
@@ -79,7 +80,9 @@ export default function ProductDetail(){
           </div>
         )}
 
-
+     <div> 
+      <Footer />
+     </div>
       </div>
       
     );
