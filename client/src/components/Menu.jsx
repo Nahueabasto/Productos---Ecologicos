@@ -1,6 +1,6 @@
 import React from "react";
 import "./Menu.css";
-import { useDispatch, useSelector, useState } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { Link } from 'react-router-dom';
 import { getLineProducts } from '../Redux/Actions';
 
