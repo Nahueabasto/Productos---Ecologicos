@@ -1,30 +1,18 @@
 import React, { useState } from 'react';
-import { FaUser } from 'react-icons/fa';
+import { useAuth0 } from "@auth0/auth0-react";
 import './Login.css';
 
-export default function Login({ onLogin }) {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  const handleLogin = () => {
-    setIsLoggedIn(true);
-    onLogin(); // Llama a la función onLogin proporcionada por el componente padre
-  };
-
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-  };
+export default function Login() {
+  
+  const { loginWithRedirect } = useAuth0();
 
   return (
     <div className="login-wrapper">
-      {isLoggedIn ? (
-        <div className="user-icon-wrapper" onClick={handleLogout}>
-          <FaUser className="user-icon" />
-        </div>
-      ) : (
-        <button className="login-button" onClick={handleLogin}>
+       
+        <button className="login-button" onClick={()=> loginWithRedirect()}>
           Login
         </button>
-      )}
+    
     </div>
   );
 }

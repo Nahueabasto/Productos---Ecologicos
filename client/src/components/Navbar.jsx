@@ -2,18 +2,14 @@ import React, { useState } from "react";
 import SearchBar from "./SearchBar";
 import "./Navbar.css";
 import EcoEcho from "../Fotos/EcoEcho.png";
-import { Link, useHistory } from "react-router-dom";
-import User from "./Login/User";
+import { Link } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
+import Login from "./Login/Login";
+import Profile from "./Login/Profile";
 
 export default function Navbar() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const history = useHistory();
-
-  const handleLogin = () => {
-    setIsLoggedIn(true);
-    history.push("/user"); // Redirige a la página del componente User
-  };
-  
+ 
+  const { loginWithRedirect } = useAuth0();
 
   return (
     <header>
@@ -36,11 +32,9 @@ export default function Navbar() {
       </div>
       <h2 className="text-nav">EcoEcho - ecological products </h2>
       <div>
-  {isLoggedIn ? (
-    <Link to="/User"></Link>
-  ) : (
-    <button onClick={handleLogin}>Login</button>
-  )}
+
+     <Login/>
+   <Profile />
 </div>
     </header>
   );

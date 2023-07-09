@@ -16,6 +16,8 @@ export default function Home() {
     const allProducts = useSelector((state) => state.products)
     const selectedCategory = useSelector((state) => state.selectedCategory);
 
+    
+
     useEffect(() => {
         dispatch(getProducts());
     }, [dispatch])
