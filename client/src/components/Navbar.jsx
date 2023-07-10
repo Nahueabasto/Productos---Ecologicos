@@ -5,11 +5,12 @@ import EcoEcho from "../Fotos/EcoEcho.png";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import Login from "./Login/Login";
-import Profile from "./Login/Profile";
+import LogoutButton from "./Login/LogoutButton";
+import SignupButton from "./Login/Signup";
 
 export default function Navbar() {
  
-  const { loginWithRedirect } = useAuth0();
+  const { isAuthenticated } = useAuth0();
 
   return (
     <header>
@@ -33,8 +34,21 @@ export default function Navbar() {
       <h2 className="text-nav">EcoEcho - ecological products </h2>
       <div>
 
-     <Login/>
-   <Profile />
+      {isAuthenticated ?
+              (
+                <>
+                  <Link to="/userprofile" >Profile, </Link>
+                  <LogoutButton />
+                </>
+              ) :
+              (
+                <>
+                  <Login />
+                  <SignupButton />
+                </>
+              )
+            }
+     
 </div>
     </header>
   );
