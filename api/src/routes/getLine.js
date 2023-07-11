@@ -5,7 +5,9 @@ const router = Router();
 
 
 router.get("/:lineParam", async (req, res) => {
-  const { lineParam } = req.params;
+  let lineParam = req.params.lineParam;
+
+  
 
   try {
     const products = await Products.findAll({
@@ -17,7 +19,7 @@ router.get("/:lineParam", async (req, res) => {
 
     // Filter products by line name if specified in the query
     const filteredProducts = products.filter((product) =>
-      product.lines.some((lineObj) => lineObj.name.toLowerCase() === lineParam.toLowerCase())
+      product.lines.some((lineObj) => lineObj.name.toLowerCase().replace(/\s/g, '-') === lineParam.toLowerCase())
     );
 
     if (filteredProducts.length === 0) {
