@@ -1,33 +1,70 @@
 footer {
-    display: flex;
-    background-color: #0c0c0c;
-    padding: 10px 0; /* Alto de Footer */
-    text-align: center;
-    margin-top: 0px;
-    color: white; /* Cambia el color del texto a blanco */
-    flex-direction: column;
-  }
-  
-  .container {
-    max-width: 1500px;
-    margin: auto;
-    align-items: stretch;;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    padding-left: 25px;
-    padding-right: 25px;
-    padding-top: 10px;
-    padding-bottom: 60px;
-  }
+  display: flex;
+  background-color: #0c0c0c;
+  padding: 10px 0; /* Alto de Footer */
+  text-align: center;
+  margin-top: 0px;
+  color: white; /* Cambia el color del texto a blanco */
+  flex-direction: column;
+}
 
-  .container div{
-    width: 300px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+.container {
+  max-width: 1500px;
+  margin: auto;
+  align-items: stretch;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-top: 10px;
+  padding-bottom: 60px;
+  position: relative;
+}
+
+.Contacto p,
+.Informacion p {
+  margin-bottom: 5px;
+}
+
+.container div {
+  width: 300px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 
 
+
+.links {
+  text-decoration: none;
+  color: inherit;
+}
+
+.links:hover {
+  color: green;
+}
+
+hr {
+  position: absolute; /* Posiciona la línea de forma absoluta dentro del contenedor */
+  width: 100%;
+  bottom: 10px; /* Ajusta la posición vertical de la línea */
+}
+
+.rights {
+  text-align: center;
+  margin-top: 10px; /* Ajusta el espacio superior del contenedor de derechos de autor */
+}
+
+.rights p {
+  margin-top: 10px; /* Ajusta el espacio superior del texto de derechos de autor */
+}

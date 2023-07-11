@@ -6,7 +6,6 @@ const router = Router();
 
 router.get("/:lineParam", async (req, res) => {
   let lineParam = req.params.lineParam;
-
   
 
   try {
@@ -24,13 +23,12 @@ router.get("/:lineParam", async (req, res) => {
 
     if (filteredProducts.length === 0) {
       return res.status(404).json({ error: "No products to show for that line!" });
-    }
-
+      
     res.status(200).json(filteredProducts);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
   }
-});
-
-
+ } catch (error) {
+    res.status(500).json({ error: error.message });
+    }
+  });
+  
 module.exports = router;

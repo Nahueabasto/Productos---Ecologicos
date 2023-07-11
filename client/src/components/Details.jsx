@@ -6,6 +6,7 @@ import { getDetail } from "../Redux/Actions";
 import "./Details.css";
 import Navbar from "./Navbar";
 import Menu from "./Menu";
+import Footer from "./Footer";
 
 export default function ProductDetail(){
     const { id } = useParams()
@@ -78,8 +79,14 @@ export default function ProductDetail(){
               <p className="detalle-texto">Detail:</p> {details.details}
               <p className="detalle-texto">Line:</p> <div className='detalle-lines'> {lines} </div>
             </div>
+            
           </div>
         )}
+
+     <div> 
+      <Footer />
+     </div>
       </div>
+      
     );
 }
