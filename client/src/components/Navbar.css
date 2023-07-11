@@ -1,18 +1,29 @@
 header{
     display: flex;
     height: 100px;
-    justify-content: space-between;
     background-color: #f3efef;
     align-items: center;
     padding: 5px;
+    font-family: 'Raleway', sans-serif;
 }
 
 .SearchBar{
+    flex: 1;
     display: flex;
-    align-items: center;
+    justify-content: center;
 }
 
 h2{
-    display: flex;
+    flex: 1;
     font-size: 100%;
+    font-family: 'Raleway', sans-serif;
+}
+
+.logoeco{
+    padding: 5px;
+    flex: 1;
+}
+
+.text-nav{
+    align-items: center;
 }

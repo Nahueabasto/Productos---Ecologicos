@@ -2,6 +2,8 @@ import axios from "axios";
 export const GET_PRODUCTS = 'GET_PRODUCTS';
 export const GET_PRODUCT_DETAIL = 'GET_PRODUCT_DETAIL';
 export const GET_NAME_PRODUCTS = 'GET_NAME_PRODUCTS';
+export const GET_LINE_PRODUCTS = 'GET_LINE_PRODUCTS';
+export const FOOTER = "FOOTER";
 
 export function getProducts(){
     return async function(dispatch){
@@ -17,7 +19,9 @@ export function getProducts(){
 export function getDetail(id){
     return async function(dispatch){
       try {
-          let productDetail = await axios.get(`http://localhost:3001/products/${id}`)
+
+          let productDetail = await axios.get(`http://localhost:3001/${id}`)
+          console.log(productDetail.data);
           
           return dispatch({
               type: 'GET_PRODUCT_DETAIL',
@@ -37,4 +41,20 @@ export function getDetail(id){
             payload: json.data,
         })
     }
-}
+    
+    }
+
+    export function getLineProducts(line){
+        return async function(dispatch){
+            try {
+            const lowercaseLine = line;
+            let json = await axios.get(`http://localhost:3001/products/${lowercaseLine}`)
+            return dispatch({
+                type: GET_LINE_PRODUCTS,
+                payload: json.data
+            })
+        } catch (error) {
+            console.error(error);
+        }
+        }
+    }

@@ -1,0 +1,41 @@
+.menu {
+    background-color: black;
+    color: white;
+    padding: 10px;
+    display: flex; /* Use flexbox to create a horizontal layout */
+    align-items: center; /* Align items vertically in the center */
+    justify-content: center; /* Center horizontally */
+    font-family: 'Raleway', sans-serif;
+  }
+  
+  .menu h2 {
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: 'Raleway', sans-serif;
+  }
+  
+  .menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex; /* Use flexbox to create a horizontal layout */
+    justify-content: center;
+}
+  
+  .menu li {
+    margin-right: 10px;
+    font-size: 16px;
+  }
+
+  .menu-link {
+    text-decoration: none; /* Remove underline */
+    color: rgb(255, 255, 255); /* Set your desired color */
+  }
+
+  .menu-link:hover {
+    cursor: pointer; /* Change the cursor to a pointer */
+    color: rgb(38, 107, 59); /* Set the desired color when hovering */
+  }
