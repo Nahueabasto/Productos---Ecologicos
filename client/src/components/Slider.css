@@ -1,0 +1,60 @@
+.slider-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 400px; /* Adjust the height as needed */
+}
+
+.slide-pictures {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.slide {
+  flex: 0 0 100%;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.slide.active {
+  opacity: 1;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.slide-controls {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  z-index: 1; /* Ensure the controls are positioned above the slide pictures */
+}
+
+.slide-controls button.slide-control {
+  background: rgba(0, 0, 0, 0.5); /* Black background with transparency */
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide-controls button.slide-control:focus {
+  outline: none;
+}
+
+.slide-controls button.slide-control:hover {
+  opacity: 0.8;
+}

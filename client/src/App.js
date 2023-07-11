@@ -11,7 +11,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/:id" render={({match}) => <ProductDetail id={match.params.id}/>} />
-          {/*<Route exact path="/products/:line" component={Home} />*/}
+          <Route exact path="/products/:lineParam" component={Home} />
         </Switch>
       </div>
     </BrowserRouter>

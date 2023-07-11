@@ -31,6 +31,9 @@ export default function ProductDetail(){
     if (!details) {
       return <div>Loading...</div>;
     }
+
+    const lines = details.lines?.map(li => li.name);
+    const brands = details.brands?.map(br => br.name);
   
     return (
 
@@ -71,9 +74,9 @@ export default function ProductDetail(){
               <p className="detalle-name">{details.name}</p>
               <p className="detalle-price">${details.price}</p>
               <p className="detalle-texto">Size:</p> {details.size}
-              <p className="detalle-texto">Brand:</p> {details.brand}
+              <p className="detalle-texto">Brand:</p> <div className='detalle-brands'> {brands} </div>
               <p className="detalle-texto">Detail:</p> {details.details}
-              <p className="detalle-texto">Line:</p> {details.line}
+              <p className="detalle-texto">Line:</p> <div className='detalle-lines'> {lines} </div>
             </div>
           </div>
         )}

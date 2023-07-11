@@ -27,7 +27,8 @@ switch (action.type) {
     case GET_LINE_PRODUCTS:
         return{
             ...state,
-            selectedCategory: action.payload,
+            selectedCategory: action.payload[0]?.lines[0]?.name || "",
+            products: action.payload,
         }
         case FOOTER:
       return {

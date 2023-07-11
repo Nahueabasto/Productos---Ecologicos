@@ -20,7 +20,7 @@ export function getDetail(id){
     return async function(dispatch){
       try {
 
-          let productDetail = await axios.get(`http://localhost:3001/products/${id}`)
+          let productDetail = await axios.get(`http://localhost:3001/${id}`)
           console.log(productDetail.data);
           
           return dispatch({
@@ -46,10 +46,15 @@ export function getDetail(id){
 
     export function getLineProducts(line){
         return async function(dispatch){
-            let json = await axios.get('http://localhost:3001/' + line)
+            try {
+            const lowercaseLine = line;
+            let json = await axios.get(`http://localhost:3001/products/${lowercaseLine}`)
             return dispatch({
                 type: GET_LINE_PRODUCTS,
                 payload: json.data
             })
+        } catch (error) {
+            console.error(error);
+        }
         }
     }
