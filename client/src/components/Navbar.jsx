@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import SearchBar from "./SearchBar";
 import "./Navbar.css";
 import EcoEcho from "../Fotos/EcoEcho.png";

@@ -4,7 +4,7 @@ import Home from './components/Home';
 import ProductDetail from './components/Details';
 import Information from './components/Information';
 import UserProfile from './components/UserProfile/UserProfile';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Menu from './components/Menu';
 
 function App() {
