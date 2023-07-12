@@ -60,3 +60,7 @@ cursor: pointer;
   font-size: 24px;
   font-weight: bold;
 }
+
+.detalle-lines{
+  padding-bottom: 20px;
+}

@@ -16,8 +16,7 @@ function App() {
           <Route exact path="/information" component={Information} />
           <Route exact path="/userprofile" component={UserProfile} />
           <Route exact path="/:id" render={({match}) => <ProductDetail id={match.params.id}/>} />
-          
-          {/*<Route exact path="/products/:line" component={Home} />*/}
+          <Route exact path="/products/:lineParam" component={Home} />
         </Switch>
       </div>
     </BrowserRouter>

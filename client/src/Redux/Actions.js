@@ -46,10 +46,15 @@ export function getDetail(id){
 
     export function getLineProducts(line){
         return async function(dispatch){
-            let json = await axios.get('http://localhost:3001/' + line)
+            try {
+            const lowercaseLine = line;
+            let json = await axios.get(`http://localhost:3001/products/${lowercaseLine}`)
             return dispatch({
                 type: GET_LINE_PRODUCTS,
                 payload: json.data
             })
+        } catch (error) {
+            console.error(error);
+        }
         }
     }

@@ -77,12 +77,10 @@ router.get("/:id", async (req, res) => {
       where: {
         id: id,    
       },
-      include: {
-        model: Line,
-        through:{
-          attributes: [],
-        },
-      },
+      include: [
+        { model: Line },
+        { model: Brand }, // Include the associated Brand model
+      ],
       attributes: ["id", "name", "price", "stock", "size", "details", "images"],
     });
 

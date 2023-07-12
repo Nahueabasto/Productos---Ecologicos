@@ -7,10 +7,12 @@ const router = Router();
 const Products = require("./Products");
 const getLine = require("./getLine");
 const Lines = require("./Line");
+//const Brands = require("./getBrand");
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 router.use("/", Products);
 router.use("/:lineParam", getLine);
 router.use("/lines", Lines);
+//router.use("/brands", Brands);
 
 module.exports = router;

@@ -7,9 +7,13 @@ const { Products, Line, Brand } = require("../db");
 
 const getApi = async () => {
   try {
+
+    //traemos todo de la api
     const allProducts = await axios.get(
       "https://6449bfc1a8370fb3213d256e.mockapi.io/api/products"
     );
+
+    //guardamos las líneas
     const uniqueLines = [...new Set(allProducts.data.map((el) => el.line))];
     const linePromises = uniqueLines.map(async (line) => {
       const lineObj = await Line.findOne({ where: { name: line } });
@@ -17,10 +21,23 @@ const getApi = async () => {
     });
     const lines = await Promise.all(linePromises);
 
+    //guardamos las marcas
+    const uniqueBrands = [...new Set(allProducts.data.map((br) => br.brand))];
+    const brandPromises = uniqueBrands.map(async (brand) => {
+      const brandObj = await Brand.findOne({ where: { name: brand } });
+      return brandObj || Brand.create({ name: brand });
+    });
+    const brands = await Promise.all(brandPromises);
+
+
     const products = await Promise.all(
       allProducts.data.map(async (el) => {
+        //buscamos la línea de cada producto
         const lineName = el.line;
         const line = lines.find((lineObj) => lineObj.name === lineName);
+        //la marca de cada producto
+        const brandName = el.brand;
+        const brand = brands.find((brandObj) => brandObj.name === brandName);
 
         const product = await Products.create({
           name: el.name,
@@ -36,6 +53,11 @@ const getApi = async () => {
           await product.addLine(line);
         }
 
+        // Asociar la marca!
+        if (brand) {
+          await product.addBrand(brand);
+        }
+        
         return product;
       })
     );
@@ -52,8 +74,10 @@ const getApi = async () => {
 const getDb = async () => {
   try {
     const products = await Products.findAll({
-      include: Line, // Include the associated Line model
-      attributes: ['id', 'name', 'price', 'stock', 'size', 'details', 'images'], // Specify the desired attributes
+      include: [{ model: Line }, // Include the associated Line model
+      { model: Brand }, // Include the associated Brand model
+    ],
+    attributes: ['id', 'name', 'price', 'stock', 'size', 'details', 'images'], // Specify the desired attributes
     });
 
     console.log('Products loaded successfully');
