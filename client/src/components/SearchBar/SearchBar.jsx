@@ -1,6 +1,6 @@
-import React, { useState }from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getNameProduct } from "../Redux/Actions";
+import { getNameProduct } from "../../Redux/Actions";
 import "./SearchBar.css";
 
 export default function SearchBar(){

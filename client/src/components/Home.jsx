@@ -18,17 +18,19 @@ export default function Home() {
   const dispatch = useDispatch();
   const allProducts = useSelector((state) => state.products);
   const selectedCategory = useSelector((state) => state.selectedCategory);
+  const isSearch = useSelector((state) => state.isSearch); ////
 
 
   useEffect(() => {
     dispatch(getProducts());
-}, [dispatch])
+  }, [dispatch]);
 
-useEffect(() => {
+  useEffect(() => {
     if (selectedCategory) {
       dispatch(getLineProducts(selectedCategory));
     }
   }, [dispatch, selectedCategory]);
+
 
   return (
     <div >
@@ -39,7 +41,7 @@ useEffect(() => {
         <Menu />
     </div>
     <div>
-        <Slider />
+    {!isSearch && <Slider />}
     </div>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet"></link>
    

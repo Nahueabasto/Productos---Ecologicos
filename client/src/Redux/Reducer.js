@@ -1,5 +1,5 @@
 
-import { GET_PRODUCTS, GET_PRODUCT_DETAIL, GET_NAME_PRODUCTS, GET_LINE_PRODUCTS, FOOTER} from "./Actions";
+import { GET_PRODUCTS, GET_PRODUCT_DETAIL, GET_LINE_PRODUCTS, FOOTER, SEARCH_SUCCESS, SEARCH_FAILURE, SET_SEARCH} from "./Actions";
 
 
 
@@ -8,6 +8,9 @@ const initialState = {
     detail: [],
     selectedCategory: "",
     footer: false,
+    isSearch: false,
+    searchResults: [], 
+  searchError: null,
 }
 
 function reducer (state = initialState, action) {
@@ -22,11 +25,7 @@ switch (action.type) {
             ...state,
             detail: action.payload,
         }
-    case GET_NAME_PRODUCTS:
-        return{
-            ...state,
-            products: action.payload,
-        }
+
     case GET_LINE_PRODUCTS:
         return{
             ...state,
@@ -38,6 +37,27 @@ switch (action.type) {
         ...state,
         footer: !state.footer,
       };
+
+      ////
+      case SEARCH_SUCCESS:
+        return {
+            ...state,
+            products: action.payload,
+        };
+      
+      case SET_SEARCH:
+      return {
+        ...state,
+        isSearch: true,
+      };
+     
+      case SEARCH_FAILURE:
+        return {
+          ...state,
+          searchResults: [],
+          searchError: action.payload,
+        };
+////
 
     default:
         return state
