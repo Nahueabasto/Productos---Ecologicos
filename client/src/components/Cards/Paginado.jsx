@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Card from "./Card";
 import "./Paginado.css";
 
@@ -17,20 +17,25 @@ const Paginado = ({ cards }) => {
   const handleNextClick = () => {
     if (!isTransitioning) {
       setIsTransitioning(true);
-      setVisibleCardIndex((prevIndex) => (prevIndex + 1) % cards.length);
+      setVisibleCardIndex((prevIndex) =>
+        prevIndex + 1 < cards.length ? prevIndex + 1 : prevIndex
+      );
     }
   };
-
-  const startIndex = visibleCardIndex;
-  const visibleCards = cards.slice(startIndex, startIndex + cardsPerPage);
 
   useEffect(() => {
     setIsTransitioning(false); // Reset the transitioning flag after state update
   }, [visibleCardIndex]);
 
   useEffect(() => {
-    setVisibleCardIndex(0); // Reset the visible card index when cards change
+    if (visibleCardIndex + cardsPerPage > cards.length) {
+      setVisibleCardIndex(Math.max(cards.length - cardsPerPage, 0));
+    }
   }, [cards]);
+
+  const startIndex = visibleCardIndex;
+  const endIndex = Math.min(visibleCardIndex + cardsPerPage, cards.length);
+  const visibleCards = cards.slice(startIndex, endIndex);
 
   return (
     <div className="paginado-container">
@@ -42,9 +47,9 @@ const Paginado = ({ cards }) => {
         >
           &lt;
         </button>
-        {visibleCards.map((card, index) => (
+        {visibleCards.map((card) => (
           <Card
-            key={startIndex + index}
+            key={card.id}
             id={card.id}
             images={card.images}
             name={card.name}
@@ -54,7 +59,7 @@ const Paginado = ({ cards }) => {
         <button
           className="pagination-button"
           onClick={handleNextClick}
-          disabled={isTransitioning}
+          disabled={visibleCardIndex + cardsPerPage >= cards.length || isTransitioning}
         >
           &gt;
         </button>
