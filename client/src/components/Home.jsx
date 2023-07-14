@@ -19,6 +19,7 @@ export default function Home() {
   const allProducts = useSelector((state) => state.products);
   const selectedCategory = useSelector((state) => state.selectedCategory);
   const isSearch = useSelector((state) => state.isSearch); ////
+  const isLine = useSelector((state) => state.isLine);
 
 
   useEffect(() => {
@@ -41,7 +42,9 @@ export default function Home() {
         <Menu />
     </div>
     <div>
-    {!isSearch && <Slider />}
+    {!(isSearch || isLine) && <Slider />}
+
+
     </div>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet"></link>
    
