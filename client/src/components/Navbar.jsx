@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import SearchBar from "./SearchBar";
+import React from "react";
+import SearchBar from "./SearchBar/SearchBar";
 import "./Navbar.css";
 import EcoEcho from "../Fotos/EcoEcho.png";
 import { Link } from "react-router-dom";
