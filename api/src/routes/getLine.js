@@ -23,7 +23,6 @@ router.get("/:lineParam", async (req, res) => {
 
     if (filteredProducts.length === 0) {
       return res.status(404).json({ error: "No products to show for that line!" });
-<<<<<<< HEAD
       
     }
     res.status(200).json(filteredProducts);
