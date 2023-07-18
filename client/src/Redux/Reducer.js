@@ -3,6 +3,7 @@ import { GET_PRODUCTS, GET_PRODUCT_DETAIL, GET_LINE_PRODUCTS, SET_LINE, FOOTER, 
 
 const initialState = {
     products: [],
+    filtered: [],
     detail: [],
     selectedCategory: "",
     footer: false,
@@ -17,7 +18,8 @@ switch (action.type) {
     case GET_PRODUCTS:
         return{
             ...state,
-            products: action.payload
+            products: action.payload,
+            filtered: action.payload,
         };
     case GET_PRODUCT_DETAIL:
         return{
@@ -29,7 +31,7 @@ switch (action.type) {
       console.log("State GET_LINE_PRODUCTS:", state);
         return{
             ...state,
-            selectedCategory: action.payload[0]?.lines[0]?.name || "",
+            filtered: action.payload[0]?.lines[0]?.name || "",
             products: action.payload,
         }
       case SET_LINE:
@@ -57,13 +59,6 @@ switch (action.type) {
         isSearch: true,
       };
      
-      // case SEARCH_FAILURE:
-      //   return {
-      //     ...state,
-      //     searchResults: [],
-      //     searchError: action.payload,
-      //   };
-////
 
     default:
         return state
