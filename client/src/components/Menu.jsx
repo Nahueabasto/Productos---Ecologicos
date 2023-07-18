@@ -22,7 +22,9 @@ export default function Menu(){
       <ul className="menu ul">
         {categories.map((category, index) => (
           <li key={index} className="menu li">
-            <Link to={`/category/${category.toLowerCase().replace(/\s/g, '-')}`} className={`menu-link ${selectedCategory === category ? 'active' : ''}`} onClick={() => handleClick(category)}>
+            <Link to={`/category/${category.toLowerCase().replace(/\s/g, '-')}`} 
+            className={`menu-link ${selectedCategory === category ? 'active' : ''}`} 
+            onClick={() => handleClick(category)}>
               {category}
             </Link>
           </li>

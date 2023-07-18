@@ -35,11 +35,13 @@
     color: rgb(255, 255, 255); /* Set your desired color */
   }
 
+  
   .menu-link.active {
-    font-weight: bold;
-    text-decoration: none; /* Remove underline */
-    color: rgb(71, 189, 107); /* Set your desired color */
+    font-weight: bold !important;
+    text-decoration: none !important; /* Remove underline */
+    color: rgb(71, 189, 107) !important; /* Set your desired color */
   }
+
 
   .menu-link:hover {
     cursor: pointer; /* Change the cursor to a pointer */
