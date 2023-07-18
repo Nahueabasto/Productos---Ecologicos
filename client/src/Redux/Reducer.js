@@ -26,6 +26,7 @@ switch (action.type) {
         }
 
     case GET_LINE_PRODUCTS:
+      console.log("State GET_LINE_PRODUCTS:", state);
         return{
             ...state,
             selectedCategory: action.payload[0]?.lines[0]?.name || "",

@@ -15,6 +15,7 @@ export default function LineProducts() {
     const { id } = useParams()
     const dispatch = useDispatch()
     const allProducts = useSelector((state) => state.products)
+    console.log(selectedCategory)
 
     return (
         <div>
@@ -26,7 +27,7 @@ export default function LineProducts() {
             </div>
             <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet"></link>
         <div>
-
+        <p>{selectedCategory.toString()}</p>
             <div className="cards-container">
                 {allProducts?.map((el) => {
                     return (

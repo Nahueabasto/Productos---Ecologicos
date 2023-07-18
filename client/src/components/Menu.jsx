@@ -6,9 +6,10 @@ import { getLineProducts } from '../Redux/Actions';
 
 export default function Menu(){
   const dispatch = useDispatch()
-  const categories = ['Bathroom', 'Kitchen', 'Home & Deco', 'Personal care', 'Disposables'];
+  const categories = ['Bathroom', 'Kitchen', 'Home & Deco', 'Personal Care', 'Disposables'];
 
   const selectedCategory = useSelector((state) => state.selectedCategory);
+  console.log(selectedCategory);
 
 
   function handleClick(category){

@@ -10,6 +10,10 @@ export default function Card({ id, images, name, price }) {
 
   return (
     <div className="card" style={{ width: "250px", height: "400px", margin: "5px", boxShadow: "0 0 2px 0px rgba(0, 0, 0, 0.5)", borderRadius: "20px" }}>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap"
+        rel="stylesheet"
+      ></link>
       <Link to={`/${id}`} className="card-link" style={{ textDecoration: "none" }}>
         <img src={firstImageUrl} alt="no" className="card-img-top" style={{ height: "250px", objectFit: "cover", borderTopRightRadius: "20px", borderTopLeftRadius: "20px" }} />
         <div className="card-body" style={{ borderTop: "2px solid black" }}>
