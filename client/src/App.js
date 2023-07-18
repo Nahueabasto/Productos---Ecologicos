@@ -4,8 +4,9 @@ import Home from './components/Home';
 import ProductDetail from './components/Details';
 import Information from './components/Information';
 import UserProfile from './components/UserProfile/UserProfile';
+import LineProducts from './components/LineProducts';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Menu from './components/Menu';
+
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route exact path="/userprofile" component={UserProfile} />
           <Route exact path="/:id" render={({match}) => <ProductDetail id={match.params.id}/>} />
           <Route exact path="/products/:lineParam" component={Home} />
+          <Route exact path="/category/:categoryName" component={LineProducts} />
         </Switch>
       </div>
     </BrowserRouter>
