@@ -7,6 +7,8 @@ export const SET_LINE = "SET_LINE";
 export const FOOTER = "FOOTER";
 export const SEARCH_SUCCESS = "SEARCH_SUCCESS";
 export const SET_SEARCH = "SET_SEARCH";
+export const setSearch = "setSearch";
+export const setLine = "setLine";
 
 
 export function getProducts(){
