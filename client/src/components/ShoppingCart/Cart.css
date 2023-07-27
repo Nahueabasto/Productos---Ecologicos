@@ -1,0 +1,68 @@
+
+  
+  .cart-modal {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 100%;
+    position: absolute;
+    top: 80px;
+    right: 10px;
+    z-index: 999;
+  /* acá abajo se agrega el triangulito como que apunta al cart. Se llama "tooltip arrow" */
+    &::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    right: 10px;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #fff; /* You can change the color of the arrow here */
+  }
+  }
+  
+  .close-button {
+    background-color: #661616;
+    border: none;
+    font-size: 12px;
+    cursor: pointer;
+    position: absolute;
+    top: 2px;
+    right: 1px;
+    padding: 8px;
+  z-index: 1;
+  border-radius: 15%;
+  }
+  
+  .title-bold{
+    font-weight: bold;
+  }
+  .close-button:hover{
+    background-color: #2e2222;
+  }
+
+  h2 {
+    margin-top: 0;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  li {
+    margin-bottom: 10px;
+  }
+  
+  .add-button {
+    background-color: #f44336;
+    color: #fff;
+  
+  
+    border: none;
+    border-radius: 4px;
+    padding: 6px 12px;
+    cursor: pointer;
+  }

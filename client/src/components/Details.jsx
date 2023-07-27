@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getDetail } from "../Redux/Actions";
+import { getDetail, addToCart, removeFromCart, updateCartCount } from "../Redux/Actions";
 import "./Details.css";
 import Navbar from "./Navbar";
 import Menu from "./Menu";
@@ -11,9 +11,12 @@ export default function ProductDetail() {
   const { id } = useParams();
   const details = useSelector((state) => state.detail);
   const dispatch = useDispatch();
+  const cart = useSelector((state) => state.shoppingCart);
+  console.log(details);
 
   const [imageUrls, setImageUrls] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
+
 
   useEffect(() => {
     dispatch(getDetail(id));
@@ -33,6 +36,24 @@ export default function ProductDetail() {
 
   if (!details) {
     return <div>Loading...</div>;
+  }
+
+  const handleAddToCart = () => {
+    console.log("Adding item to cart:", details);
+    dispatch(
+      addToCart({
+        id: details.id,
+        name: details.name,
+        price: details.price,
+      }),
+      updateCartCount()
+    )
+  }
+
+  const handleRemoveFromCart = (productId) => {
+    dispatch(
+      removeFromCart(productId)
+    )
   }
 
   const lines = details.lines?.map((li) => li.name);
@@ -81,6 +102,10 @@ export default function ProductDetail() {
             <p className="detalle-texto">Detail:</p> {details.details}
             <p className="detalle-texto">Line:</p>{" "}
             <div className="detalle-lines">{lines}</div>
+          <div className="buttons-container">
+          <button onClick={handleAddToCart}>Add to Cart</button>
+          <button onClick={() => handleRemoveFromCart(details.id)}>Remove from Cart</button>
+          </div>
           </div>
         </div>
       )}

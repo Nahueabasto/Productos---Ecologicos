@@ -9,7 +9,10 @@ export const SEARCH_SUCCESS = "SEARCH_SUCCESS";
 export const SET_SEARCH = "SET_SEARCH";
 export const setSearch = "setSearch";
 export const setLine = "setLine";
-
+export const ADD_TO_CART = "ADD_TO_CART";
+export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
+export const UPDATE_QUANTITY = "UPDATE_QUANTITY";
+export const UPDATE_CART_COUNT = "UPDATE_CART_COUNT"
 
 export function getProducts(){
     return async function(dispatch){
@@ -33,8 +36,8 @@ export function getDetail(id){
               type: 'GET_PRODUCT_DETAIL',
               payload: productDetail.data
           });
-      } catch(e){
-          console.log(e)
+      } catch(error){
+          console.error("Error fetching product data", error)
       }
     }
   }
@@ -81,6 +84,39 @@ export function getDetail(id){
       }
         };
       }
+
+    export function addToCart(item) {
+      return async function (dispatch) { 
+        return dispatch({
+            type: ADD_TO_CART,
+            payload: item
+        })
+      }
+    }
+
+    export function removeFromCart(productId) {
+      return async function (dispatch) {  return dispatch({
+          type: REMOVE_FROM_CART,
+          payload: productId
+      })
+    }
+  }
+
+  export function updateQuantity(quantity) {
+    return async function (dispatch) {  return dispatch({
+        type: UPDATE_QUANTITY,
+        payload: quantity
+    })
+  }
+}
+
+export function updateCartCount() {
+  return async function (dispatch) {
+    return dispatch({
+      type: UPDATE_CART_COUNT,
+    })
+  }
+}
       
       ////
       
