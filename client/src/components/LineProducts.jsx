@@ -6,7 +6,7 @@ import Card from "./Cards/Card";
 import Navbar from "./Navbar";
 import Menu from "./Menu";
 import Footer from "./Footer";
-//import "./Home.css";
+import "./Home.css";
 import ProductDetail from "./Details";
 import { Route, Switch } from "react-router-dom";
 import { useParams } from "react-router-dom";
