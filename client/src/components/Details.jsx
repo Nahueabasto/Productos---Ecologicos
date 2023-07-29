@@ -45,15 +45,17 @@ export default function ProductDetail() {
         id: details.id,
         name: details.name,
         price: details.price,
+        img: imageUrls[0]
       }),
-      updateCartCount()
-    )
+      )
+    //dispatch(updateCartCount(true))
   }
 
   const handleRemoveFromCart = (productId) => {
     dispatch(
       removeFromCart(productId)
-    )
+      );
+      //dispatch(updateCartCount(false));
   }
 
   const lines = details.lines?.map((li) => li.name);
@@ -87,11 +89,10 @@ export default function ProductDetail() {
             ))}
           </div>
           {selectedImage && (
-            <img
-              src={selectedImage}
-              alt="Not found"
-              className="enlarged-image"
-            />
+             <div
+             className="enlarged-image"
+             style={{ backgroundImage: `url(${selectedImage})` }}
+           />
           )}
           <div className="detalle">
             <p className="detalle-name">{details.name}</p>

@@ -12,7 +12,8 @@ export const setLine = "setLine";
 export const ADD_TO_CART = "ADD_TO_CART";
 export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
 export const UPDATE_QUANTITY = "UPDATE_QUANTITY";
-export const UPDATE_CART_COUNT = "UPDATE_CART_COUNT"
+export const UPDATE_CART_COUNT = "UPDATE_CART_COUNT";
+export const REMOVE_ALL = "REMOVE_ALL";
 
 export function getProducts(){
     return async function(dispatch){
@@ -94,28 +95,45 @@ export function getDetail(id){
       }
     }
 
-    export function removeFromCart(productId) {
-      return async function (dispatch) {  return dispatch({
-          type: REMOVE_FROM_CART,
-          payload: productId
-      })
-    }
+    export function removeFromCart(productId) {  
+      return async function (dispatch) { 
+          return dispatch({
+            type: REMOVE_FROM_CART,
+            payload: productId
+        })     
+      }
   }
 
-  export function updateQuantity(quantity) {
-    return async function (dispatch) {  return dispatch({
-        type: UPDATE_QUANTITY,
-        payload: quantity
+  export function removeAll(productId) {
+    return async function (dispatch, getState) { 
+      const state = getState();
+      const itemToRemove = state.shoppingCart.find((item) => item.id === productId);
+      if (itemToRemove) {
+        const quantityToRemove = itemToRemove.quantity
+    dispatch({
+        type: REMOVE_ALL,
+        payload: {productId, quantityToRemove}
+    },
+  );
+}
+  };
+}
+
+export function updateCartCount(increment) {
+  return async function (dispatch) {
+    return dispatch({
+      type: UPDATE_CART_COUNT,
+      payload: increment,
     })
   }
 }
 
-export function updateCartCount() {
-  return async function (dispatch) {
-    return dispatch({
-      type: UPDATE_CART_COUNT,
-    })
-  }
+export function updateQuantity(quantity) {
+  return async function (dispatch) {  return dispatch({
+      type: UPDATE_QUANTITY,
+      payload: quantity
+  })
+}
 }
       
       ////

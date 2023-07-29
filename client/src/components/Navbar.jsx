@@ -20,7 +20,8 @@ export default function Navbar() {
   const isLine = useSelector((state) => state.isLine);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const cartItemCount = useSelector((state) => state.cartCount);
-
+  console.log(cartItemCount);
+  
   const cartItems = useSelector((state) => state.shoppingCart);
 
   const handleRemoveFromCart = (productId) => {
