@@ -1,4 +1,4 @@
-import { GET_PRODUCTS, GET_PRODUCT_DETAIL, GET_LINE_PRODUCTS, SET_LINE, FOOTER, SEARCH_SUCCESS, SET_SEARCH} from "./Actions";
+import { GET_PRODUCTS, GET_PRODUCT_DETAIL, GET_LINE_PRODUCTS, SET_LINE, FOOTER, SEARCH_SUCCESS, SET_SEARCH, CREATE_USER} from "./Actions";
 
 
 const initialState = {
@@ -11,6 +11,7 @@ const initialState = {
     // searchResults: [], 
     // searchError: null,
     isLine: false,
+    userInfo: {},
 }
 
 function reducer (state = initialState, action) {
@@ -57,6 +58,14 @@ switch (action.type) {
         ...state,
         isSearch: true,
       };
+
+      case CREATE_USER:
+        if (action.payload.id) {
+          return {
+            ...state,
+            userInfo: { status: "User Created" },
+          };
+        }
      
 
     default:

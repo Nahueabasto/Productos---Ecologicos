@@ -9,7 +9,8 @@ export const SEARCH_SUCCESS = "SEARCH_SUCCESS";
 export const SET_SEARCH = "SET_SEARCH";
 export const setSearch = "setSearch";
 export const setLine = "setLine";
-
+export const CREATE_USER = 'CREATE_USER'
+//import { loadingAction } from ".";
 
 export function getProducts(){
     return async function(dispatch){
@@ -82,6 +83,20 @@ export function getDetail(id){
         };
       }
       
-      ////
+      //// USER /////
+      export function createUser(payload) {
+        return async function (dispatch) {
+          try {
+            
+            let response = await axios.post("/users", payload);
+            dispatch({
+              type: CREATE_USER,
+              payload: response.data,
+            });
       
+          } catch (error) {
+            console.log("ERROR", error);
+          }
+        };
+      }
       
