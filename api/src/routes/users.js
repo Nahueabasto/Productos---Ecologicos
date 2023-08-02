@@ -3,6 +3,29 @@ const { User } = require("../db");
 //const { api } = require("./infoApis")
 const router = Router(); 
 const { createUser } = require('../controllers/CreateUser');
+const { getUserId } = require('../controllers/getUserId');
+
+router.get('/:id', async (req, res) => {
+  try {
+      const { id } = req.params;
+      console.log(req.params)
+      let result = await getUserId(id)
+      res.status(200).send(result)
+  } catch (error) {
+      res.status(400).send(error.message)
+  }
+})
+
+//traer todos los usuarios
+router.get('/', async (req, res) => {
+  try {
+      let result = await User.findAll();
+      
+      res.status(200).send(result)
+  } catch (error) {
+      res.status(400).send(error.message)
+  }
+})
 
 router.post("/", async (req, res) => {
     try {
@@ -19,5 +42,7 @@ router.post("/", async (req, res) => {
       res.status(400).send(error.message);
     }
   });
+
+  
 
   module.exports = router;
