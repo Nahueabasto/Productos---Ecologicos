@@ -26,7 +26,7 @@
     right: 10px;
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
-    border-bottom: 10px solid #fff; /* You can change the color of the arrow here */
+    border-bottom: 10px solid #fff; /* Color de la flecha aquí */
   }
   
   .close-button {
@@ -75,3 +75,86 @@
     padding-right: 8px;
     border-radius: 10%;
   }
+
+  /* Styles for the productQuantity container */
+.productQuantity {
+  display: inline-flex; /* para que tome solo el contenido y lo rodee*/
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #0a0a0a;
+  background-color: #ffffff;
+  border-radius: 20px; /* redondearlo */
+  padding: 5px;
+}
+
+/* Styles for the buttons inside the container */
+.productQuantity button {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  background-color: #ffffff;
+  cursor: pointer;
+  outline: none;
+}
+
+/* Style for the number button (center) */
+.numbers {
+  padding-left: 2px;
+  padding-right: 2px;
+  font-weight: bold;
+  justify-content: center;
+}
+
+/* Style for the + and - buttons */
+.productQuantity button.plus-minus {
+  width: 30px;
+  color: black;
+  font-weight: bold;
+  background-color: #ffffff;
+}
+
+/* Space between the buttons */
+.productQuantity button + button {
+  margin-left: 5px;
+}
+
+.product-item-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.trash-button{
+  margin-left: 5px;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+
+.lastline{
+  float: left;
+  margin-right: 200px; 
+}
+
+.pricing{
+  margin-top: 5px;
+  margin-left: 60px;
+  font-size: large;
+  font-weight: bold;
+}
+
+.separator{
+  align-items: center;
+}
+
+.total-amount{
+  background-color: black;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+}

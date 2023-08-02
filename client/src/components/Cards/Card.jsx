@@ -1,12 +1,28 @@
 
 import React from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { addToCart } from "../../Redux/Actions";
 import "./Card.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function Card({ id, images, name, price }) {
   const imageUrls = images.split(", ");
   const firstImageUrl = imageUrls[0]; // Obtener la primera URL de imagen
+
+  const dispatch = useDispatch();
+  
+  const handleAddToCart = () => {
+    console.log("Adding item to cart:");
+    dispatch(
+      addToCart({
+        id: id,
+        name: name,
+        price: price,
+        img: firstImageUrl
+      }),
+      )
+  }
 
   return (
     <div className="card" style={{ width: "250px", height: "400px", margin: "5px", boxShadow: "0 0 2px 0px rgba(0, 0, 0, 0.5)", borderRadius: "20px" }}>
@@ -21,6 +37,7 @@ export default function Card({ id, images, name, price }) {
           <h6 className="card-subtitle mb-2 text-muted" style={{ fontSize: "25px", fontWeight: "bolder", color: "black"  }}>${price}</h6>
         </div>
       </Link>
+      <button className="addToCart" onClick={handleAddToCart}>Add to Cart</button>
     </div>
   );
 }

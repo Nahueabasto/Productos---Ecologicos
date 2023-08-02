@@ -14,6 +14,7 @@ export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
 export const UPDATE_QUANTITY = "UPDATE_QUANTITY";
 export const UPDATE_CART_COUNT = "UPDATE_CART_COUNT";
 export const REMOVE_ALL = "REMOVE_ALL";
+export const TOTAL_CART = "TOTAL_CART"
 
 export function getProducts(){
     return async function(dispatch){
@@ -128,14 +129,28 @@ export function updateCartCount(increment) {
   }
 }
 
-export function updateQuantity(quantity) {
-  return async function (dispatch) {  return dispatch({
+export function updateQuantity(itemId) {
+  return async function (dispatch, getState) {  
+    const state = getState();
+    const itemToUpdate = state.shoppingCart.find((item) => item.id === itemId);
+    if(itemToUpdate) {
+      const updatedItem = {...itemToUpdate, quantity: itemToUpdate.quantity + 1}
+    return dispatch({
       type: UPDATE_QUANTITY,
-      payload: quantity
+      payload: updatedItem
   })
 }
+return dispatch({
+  type: UPDATE_QUANTITY,
+  payload: null, //por si el producto no está.
+})
 }
-      
-      ////
-      
-      
+}
+
+export function totalCart(){
+  return async function (dispatch) {
+    return dispatch({
+      type: TOTAL_CART,
+    })
+  }
+}

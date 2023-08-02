@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts, getLineProducts } from '../Redux/Actions';
+import { getProducts, getLineProducts, totalCart } from '../Redux/Actions';
 import Paginado from "./Cards/Paginado";
 import Navbar from "./Navbar";
 import Menu from "./Menu";
@@ -37,6 +37,9 @@ export default function Home() {
       dispatch(getLineProducts(selectedCategory));
     }
   }, [dispatch, selectedCategory]);
+
+  
+
 
 
   return (

@@ -1,4 +1,4 @@
-import { GET_PRODUCTS, GET_PRODUCT_DETAIL, GET_LINE_PRODUCTS, SET_LINE, FOOTER, SEARCH_SUCCESS, SET_SEARCH, ADD_TO_CART, REMOVE_FROM_CART, UPDATE_QUANTITY, UPDATE_CART_COUNT, REMOVE_ALL } from "./Actions";
+import { GET_PRODUCTS, GET_PRODUCT_DETAIL, GET_LINE_PRODUCTS, SET_LINE, FOOTER, SEARCH_SUCCESS, SET_SEARCH, ADD_TO_CART, REMOVE_FROM_CART, UPDATE_QUANTITY, UPDATE_CART_COUNT, REMOVE_ALL, TOTAL_CART } from "./Actions";
 
 
 const initialState = {
@@ -11,8 +11,10 @@ const initialState = {
     // searchResults: [], 
     // searchError: null,
     isLine: false,
+    //Shopping Cart states:
     shoppingCart: [],
     cartCount: 0,
+    totalCart: 0,
 }
 
 function reducer (state = initialState, action) {
@@ -116,13 +118,16 @@ switch (action.type) {
       };
 
         case UPDATE_QUANTITY:
+          const updatedItem = action.payload
+          if(!updatedItem) {
+            return state; //si no está el item retornar el estado como está
+          }
         return {
         ...state,
-        shoppingCart: state.items.map((item) =>
-          item.id === action.payload.id
-            ? { ...item, quantity: action.payload.quantity }
-            : item
+        shoppingCart: state.shoppingCart.map((item) =>
+          item.id === updatedItem.id ? updatedItem : item //Buscá el item. Si está, devolvé el item updateado. Sino, devolvé el item así
         ),
+        cartCount: state.cartCount + 1
       };
 
         case UPDATE_CART_COUNT:
@@ -131,6 +136,14 @@ switch (action.type) {
             ...state,
             cartCount: increment ? state.cartCount + 1 : state.cartCount - 1,
           } // si increment está en true, sumale uno a la cuenta. Sino, restale 1.
+
+        case TOTAL_CART:
+          const allPrices = state.shoppingCart.map((product) => product.price * product.quantity);
+          const total = allPrices.reduce((acc, obj) => acc + obj, 0);
+          return {
+            ...state,
+            totalCart: total,
+          }
 
     default:
         return state
