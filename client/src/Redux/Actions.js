@@ -9,8 +9,8 @@ export const SEARCH_SUCCESS = "SEARCH_SUCCESS";
 export const SET_SEARCH = "SET_SEARCH";
 export const setSearch = "setSearch";
 export const setLine = "setLine";
-export const CREATE_USER = 'CREATE_USER'
-
+export const CREATE_USER = 'CREATE_USER';
+export const GET_USER_INFO = 'GET_USER_INFO';
 //import { loadingAction } from ".";
 
 export function getProducts(){
@@ -125,3 +125,18 @@ export function getLineProducts(line) {
         };
       }
       
+
+      export function getUserInfo(email) {
+        return async function (dispatch) {
+          try {
+          let user = await axios.get(`/users/?email=${email}`);
+
+            dispatch({
+              type: GET_USER_INFO,
+              payload: user.data,
+            });
+          } catch (error) {
+            console.log("ERROR", error);
+          }
+        };
+      }
