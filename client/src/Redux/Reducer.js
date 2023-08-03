@@ -1,4 +1,4 @@
-import { GET_PRODUCTS, GET_PRODUCT_DETAIL, GET_LINE_PRODUCTS, SET_LINE, FOOTER, SEARCH_SUCCESS, SET_SEARCH, CREATE_USER} from "./Actions";
+import { GET_PRODUCTS, GET_PRODUCT_DETAIL, GET_LINE_PRODUCTS, SET_LINE, FOOTER, SEARCH_SUCCESS, SET_SEARCH, CREATE_USER } from "./Actions";
 
 
 const initialState = {
@@ -28,12 +28,14 @@ switch (action.type) {
             detail: action.payload,
         }
 
-    case GET_LINE_PRODUCTS:
-        return{
-            ...state,
-            filtered: action.payload[0]?.lines[0]?.name || "",
-            products: action.payload,
-        }
+        case GET_LINE_PRODUCTS:
+          return{
+              ...state,
+              filtered: action.payload[0]?.lines[0]?.name || "",
+              products: action.payload,
+          }
+        
+
       case SET_LINE:
         return {
         ...state,

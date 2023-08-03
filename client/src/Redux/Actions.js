@@ -9,7 +9,8 @@ export const SEARCH_SUCCESS = "SEARCH_SUCCESS";
 export const SET_SEARCH = "SET_SEARCH";
 export const setSearch = "setSearch";
 export const setLine = "setLine";
-export const CREATE_USER = 'CREATE_USER'
+export const CREATE_USER = 'CREATE_USER';
+export const GET_USER_INFO = 'GET_USER_INFO';
 //import { loadingAction } from ".";
 
 export function getProducts(){
@@ -27,11 +28,11 @@ export function getDetail(id){
     return async function(dispatch){
       try {
 
-          let productDetail = await axios.get(`http://localhost:3001/${id}`)
+          let productDetail = await axios.get(`http://localhost:3001/products/${id}`)
           console.log(productDetail.data);
           
           return dispatch({
-              type: 'GET_PRODUCT_DETAIL',
+              type: GET_PRODUCT_DETAIL,
               payload: productDetail.data
           });
       } catch(e){
@@ -41,23 +42,47 @@ export function getDetail(id){
   }
 
 
-    export function getLineProducts(line){
-        return async function(dispatch){
-            try {
-            const lowercaseLine = line;
-            let json = await axios.get(`http://localhost:3001/products/${lowercaseLine}`)
-             dispatch({
-                type: GET_LINE_PRODUCTS,
-                payload: json.data
-            })
-            dispatch({
-              type: SET_LINE,
-            });
-        } catch (error) {
-            console.error(error);
-        }
-        }
+  // export function getLineProducts(line){
+  //   return async function(dispatch){
+  //       try {
+  //       const lowercaseLine = line;
+  //       let json = await axios.get(`http://localhost:3001/products/${lowercaseLine}`)
+  //        dispatch({
+  //           type: GET_LINE_PRODUCTS,
+  //           payload: json.data
+  //       })
+  //       dispatch({
+  //         type: SET_LINE,
+  //       });
+  //   } catch (error) {
+  //       console.error(error);
+  //   }
+  //   }
+//}
+
+export function getLineProducts(line) {
+  return async function (dispatch) {
+    try {
+      const lowercaseLine = line;
+      let json = await axios.get(`http://localhost:3001/products/line/${lowercaseLine}`);
+
+      console.log("Action: GET_LINE_PRODUCTS");
+      console.log("Payload:", json.data);
+
+      dispatch({
+        type: GET_LINE_PRODUCTS,
+        payload: json.data,
+      });
+
+      dispatch({
+        type: SET_LINE,
+      });
+    } catch (error) {
+      console.error(error);
     }
+  };
+}
+
 
     ////
     export function getNameProduct(name) {
@@ -100,3 +125,18 @@ export function getDetail(id){
         };
       }
       
+
+      export function getUserInfo(email) {
+        return async function (dispatch) {
+          try {
+          let user = await axios.get(`/users/?email=${email}`);
+
+            dispatch({
+              type: GET_USER_INFO,
+              payload: user.data,
+            });
+          } catch (error) {
+            console.log("ERROR", error);
+          }
+        };
+      }
