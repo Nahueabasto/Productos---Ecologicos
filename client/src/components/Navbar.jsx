@@ -48,7 +48,7 @@ export default function Navbar() {
       <div>
         {isAuthenticated ? (
           <>
-            <Link to="/userprofile">Profile, </Link>
+            <Link to="/userprofile">Profile </Link>
             <LogoutButton />
           </>
         ) : (

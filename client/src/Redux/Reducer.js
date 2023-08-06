@@ -1,4 +1,4 @@
-import { GET_PRODUCTS, GET_PRODUCT_DETAIL, GET_LINE_PRODUCTS, SET_LINE, FOOTER, SEARCH_SUCCESS, SET_SEARCH, CREATE_USER } from "./Actions";
+import { GET_PRODUCTS, GET_PRODUCT_DETAIL, GET_LINE_PRODUCTS, SET_LINE, FOOTER, SEARCH_SUCCESS, SET_SEARCH, CREATE_USER, GET_USER_INFO } from "./Actions";
 
 
 const initialState = {
@@ -6,12 +6,12 @@ const initialState = {
     filtered: [],
     detail: [],
     selectedCategory: "",
+    userInfo: [],
     footer: false,
     isSearch: false,
     // searchResults: [], 
     // searchError: null,
     isLine: false,
-    userInfo: {},
 }
 
 function reducer (state = initialState, action) {
@@ -65,9 +65,15 @@ switch (action.type) {
         if (action.payload.id) {
           return {
             ...state,
-            userInfo: { status: "User Created" },
+            userInfo: action.payload,
           };
         }
+        case GET_USER_INFO:
+      return {
+        ...state,
+        userInfo: action.payload,
+      };
+
      
 
     default:

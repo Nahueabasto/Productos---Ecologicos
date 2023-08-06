@@ -113,7 +113,7 @@ export function getLineProducts(line) {
         return async function (dispatch) {
           try {
             
-            let response = await axios.post("/users", payload);
+            let response = await axios.post("http://localhost:3001/users", payload);
             dispatch({
               type: CREATE_USER,
               payload: response.data,
@@ -126,10 +126,10 @@ export function getLineProducts(line) {
       }
       
 
-      export function getUserInfo(email) {
+      export function getUserInfo() {
         return async function (dispatch) {
           try {
-          let user = await axios.get(`/users/?email=${email}`);
+          let user = await axios.get("http://localhost:3001/users");
 
             dispatch({
               type: GET_USER_INFO,
