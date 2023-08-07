@@ -1,0 +1,96 @@
+
+.containerr {
+  margin: 0 auto;
+  max-width: 1300px;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-gap: 10px;
+  margin-top: 20px;
+}
+
+/* Estilos para pantallas con un ancho máximo de 600px */
+@media screen and (max-width: 600px) {
+  .containerr {
+    grid-template-columns: 1fr; /* Una sola columna */
+  }
+}
+
+.contenedor-1{
+  grid-column: 1;
+}
+
+.contenedor-2{
+  grid-column: 2;
+}
+
+
+.mi-cuenta{
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 35px;
+}
+
+.componente-1-card {
+  max-width: 400px;
+  margin-right: 70px;
+  text-align: left;
+  border: none;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  margin-top: 15px;
+}
+
+
+.card-body p {
+  margin-bottom: 3px; /* Ajustar el margen inferior para reducir el espacio entre los párrafos */
+  font-weight: 600;
+}
+
+.card-titlee{
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 5px;
+}
+
+
+.card-title-divider {
+    border-bottom: 1px solid #ccc; /* Establece el estilo de la línea (puedes ajustar el color) */
+    width: 83%;
+    margin-bottom: 10px; /* Ajusta el espacio entre la línea y el contenido siguiente */
+    padding-bottom: 5px; /* Ajusta el espacio entre la línea y el texto "Datos Personales" */
+    text-align: left;
+    
+  }
+
+
+
+  .card-title-dividerr{
+    border-bottom: 1px solid #ccc; /* Establece el estilo de la línea (puedes ajustar el color) */
+    width: 100%;
+    margin-bottom: 10px; /* Ajusta el espacio entre la línea y el contenido siguiente */
+    padding-bottom: 5px; /* Ajusta el espacio entre la línea y el texto "Datos Personales" */
+    text-align: left;
+    
+  }
+
+  .primera-compra{
+    margin-top: 50px;
+  }
+
+  .black-button {
+    display: inline-block;
+    padding: 10px 150px;
+    background-color: black;
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+
+  }
+
+  .black-button:hover {
+    color: #fff;
+    background-color: #333; /* Puedes ajustar este color de fondo cuando se hace hover */
+  }

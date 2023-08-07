@@ -29,9 +29,10 @@ router.get('/', async (req, res) => {
 
 router.post("/", async (req, res) => {
     try {
-      const { email, fullname, profile, avatar } = req.body;
+      const { email, name, fullname, profile, avatar } = req.body;
       let result = await createUser(
         email,
+        name,
         fullname,
         profile,
         avatar,

@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts, getLineProducts } from '../Redux/Actions';
+import { getProducts, getLineProducts, createUser } from '../Redux/Actions';
 import Paginado from "./Cards/Paginado";
 import Navbar from "./Navbar";
 import Menu from "./Menu";
@@ -12,6 +12,9 @@ import { useParams } from "react-router-dom";
 import Recommended from "./Cards/Recommended";
 import Offer from "./Cards/Offer";
 
+import { useAuth0 } from "@auth0/auth0-react";
+
+
 export default function Home() {
   const dispatch = useDispatch();
   const { categoryName } = useParams();
@@ -20,10 +23,38 @@ export default function Home() {
   const isSearch = useSelector((state) => state.isSearch);
   const isLine = useSelector((state) => state.isLine);
 
+//////////////////////
+  // const [userObj, setUserObj] = useState(null);
+   const [loading, setLoading] = useState(true);
+
+
+
+  const { user, isAuthenticated, isLoading } = useAuth0();
+
+  useEffect(() => {
+    if (isAuthenticated && !isLoading) {
+      const userDb = {
+        email: user.email,
+        name: user.name,
+        fullname: user.name,
+        profile: user.nickname,
+        avatar: user.picture,
+      };
+      dispatch(createUser(userDb))
+      .then(() => setLoading(false)) // Establecer el estado de carga en "false" cuando los datos se hayan guardado
+      .catch((error) => {
+        // Manejar errores, si es necesario
+        setLoading(false);
+      });
+  }
+}, [dispatch, isAuthenticated, isLoading, user]);
+
+
   const filteredProducts = allProducts.filter(
     (product) => product.category === categoryName
   );
 
+///////
   useEffect(() => {
     dispatch(getProducts());
   }, [dispatch]);
