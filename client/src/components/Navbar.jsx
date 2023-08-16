@@ -9,6 +9,7 @@ import Login from "./Login/Login";
 import LogoutButton from "./Login/LogoutButton";
 import SignupButton from "./Login/Signup";
 import { setLine, setSearch } from "../Redux/Actions";
+import UserProfile from "./Login/Signup";
 
 export default function Navbar() {
   
@@ -40,15 +41,17 @@ export default function Navbar() {
             height="90"
           ></img>
         </Link>
+      <h1 className="text-nav">EcoEcho - ecological products </h1>
       </div>
+
       <div className="SearchBar">
         <SearchBar />
       </div>
-      <h2 className="text-nav">EcoEcho - ecological products </h2>
-      <div>
+     
+      <div className="loginn">
         {isAuthenticated ? (
           <>
-            <Link to="/userprofile">Profile </Link>
+            <Link className="profile" to="/userprofile">Profile </Link>
             <LogoutButton />
           </>
         ) : (

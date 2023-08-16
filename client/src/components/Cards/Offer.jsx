@@ -39,7 +39,7 @@ const Offer = ({ cards }) => {
 
   return (
     <div className="paginado-container">
-        <h3 className="left-align" style={{ color: "green", fontWeight: "bold" }}>En oferta</h3>
+        <h3 className="left-align" style={{ color: "green", fontWeight: "bold" }}>In offer</h3>
       <div className="cards-container">
         <button
           className="pagination-button"
