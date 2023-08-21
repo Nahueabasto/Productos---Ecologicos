@@ -4,16 +4,17 @@ const { Router } = require('express');
 
 
 const router = Router();     
-const Products = require("./Products");
-const getLine = require("./getLine");
-const Lines = require("./Line");
-
+const Products = require("./products");
+const users = require("./users")
+//const Lines = require("./Line");
 //const Brands = require("./getBrand");
+
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
-router.use("/", Products);
-router.use("/:lineParam", getLine);
-router.use("/lines", Lines);
+
+router.use("/products", Products);
+router.use("/users", users);
+//router.use("/line", getLine);
 //router.use("/brands", Brands);
 
 module.exports = router;

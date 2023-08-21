@@ -1,4 +1,4 @@
-import { GET_PRODUCTS, GET_PRODUCT_DETAIL, GET_LINE_PRODUCTS, SET_LINE, FOOTER, SEARCH_SUCCESS, SET_SEARCH, ADD_TO_CART, REMOVE_FROM_CART, UPDATE_QUANTITY, UPDATE_CART_COUNT, REMOVE_ALL, TOTAL_CART } from "./Actions";
+import { GET_PRODUCTS, GET_PRODUCT_DETAIL, GET_LINE_PRODUCTS, SET_LINE, FOOTER, SEARCH_SUCCESS, SET_SEARCH, ADD_TO_CART, REMOVE_FROM_CART, UPDATE_QUANTITY, UPDATE_CART_COUNT, REMOVE_ALL, TOTAL_CART , CREATE_USER, GET_USER_INFO } from "./Actions";
 
 
 const initialState = {
@@ -6,6 +6,7 @@ const initialState = {
     filtered: [],
     detail: [],
     selectedCategory: "",
+    userInfo: [],
     footer: false,
     isSearch: false,
     // searchResults: [], 
@@ -38,6 +39,14 @@ switch (action.type) {
             filtered: action.payload[0]?.lines[0]?.name || "",
             products: action.payload,
         }
+        case GET_LINE_PRODUCTS:
+          return{
+              ...state,
+              filtered: action.payload[0]?.lines[0]?.name || "",
+              products: action.payload,
+          }
+        
+
       case SET_LINE:
         return {
         ...state,
@@ -144,6 +153,21 @@ switch (action.type) {
             ...state,
             totalCart: total,
           }
+
+      case CREATE_USER:
+        if (action.payload.id) {
+          return {
+            ...state,
+            userInfo: action.payload,
+          };
+        }
+        case GET_USER_INFO:
+      return {
+        ...state,
+        userInfo: action.payload,
+      };
+
+     
 
     default:
         return state

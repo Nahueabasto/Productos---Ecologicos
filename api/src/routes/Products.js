@@ -5,7 +5,7 @@ const { allInfo, getDb, getApi } = require('../controllers/getProducts.js')
 
 
 
-router.get('/products', async (req, res) => {
+router.get('/', async (req, res) => {
   const { name } = req.query;
   try {
     // Obtener los productos desde la base de datos
@@ -93,6 +93,32 @@ router.get("/:id", async (req, res) => {
     res.status(404).json("You messed up, Lu");
   }
   });
+
+  router.get("/line/:line", async (req, res) => {
+    let lineParam = req.params.line;
+    
+  
+    try {
+      const products = await Products.findAll({
+        include: [
+          { model: Line, attributes: ['id', 'name'] },
+        ],
+        attributes: ['id', 'name', 'price', 'stock', 'size', 'details', 'images']
+      });
+  
+      // Filter products by line name if specified in the query
+      const filteredProducts = products.filter((product) =>
+        product.lines.some((lineObj) => lineObj.name.toLowerCase().replace(/\s/g, '-') === lineParam.toLowerCase())
+      );
+  
+      if (filteredProducts.length === 0) {
+        return res.status(404).json({ error: "No products to show for that line!" });
+    }
+    res.status(200).json(filteredProducts);
+   } catch (error) {
+      res.status(500).json({ error: error.message });
+      }
+    });
 
 module.exports = router;
 

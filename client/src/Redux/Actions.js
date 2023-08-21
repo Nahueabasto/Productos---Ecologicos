@@ -9,7 +9,9 @@ export const SEARCH_SUCCESS = "SEARCH_SUCCESS";
 export const SET_SEARCH = "SET_SEARCH";
 export const setSearch = "setSearch";
 export const setLine = "setLine";
-export const ADD_TO_CART = "ADD_TO_CART";
+export const CREATE_USER = 'CREATE_USER';
+export const GET_USER_INFO = 'GET_USER_INFO';
+//import { loadingAction } from ".";export const ADD_TO_CART = "ADD_TO_CART";
 export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
 export const UPDATE_QUANTITY = "UPDATE_QUANTITY";
 export const UPDATE_CART_COUNT = "UPDATE_CART_COUNT";
@@ -31,11 +33,11 @@ export function getDetail(id){
     return async function(dispatch){
       try {
 
-          let productDetail = await axios.get(`http://localhost:3001/${id}`)
+          let productDetail = await axios.get(`http://localhost:3001/products/${id}`)
           console.log(productDetail.data);
           
           return dispatch({
-              type: 'GET_PRODUCT_DETAIL',
+              type: GET_PRODUCT_DETAIL,
               payload: productDetail.data
           });
       } catch(error){
@@ -45,23 +47,47 @@ export function getDetail(id){
   }
 
 
-    export function getLineProducts(line){
-        return async function(dispatch){
-            try {
-            const lowercaseLine = line;
-            let json = await axios.get(`http://localhost:3001/products/${lowercaseLine}`)
-             dispatch({
-                type: GET_LINE_PRODUCTS,
-                payload: json.data
-            })
-            dispatch({
-              type: SET_LINE,
-            });
-        } catch (error) {
-            console.error(error);
-        }
-        }
+  // export function getLineProducts(line){
+  //   return async function(dispatch){
+  //       try {
+  //       const lowercaseLine = line;
+  //       let json = await axios.get(`http://localhost:3001/products/${lowercaseLine}`)
+  //        dispatch({
+  //           type: GET_LINE_PRODUCTS,
+  //           payload: json.data
+  //       })
+  //       dispatch({
+  //         type: SET_LINE,
+  //       });
+  //   } catch (error) {
+  //       console.error(error);
+  //   }
+  //   }
+//}
+
+export function getLineProducts(line) {
+  return async function (dispatch) {
+    try {
+      const lowercaseLine = line;
+      let json = await axios.get(`http://localhost:3001/products/line/${lowercaseLine}`);
+
+      console.log("Action: GET_LINE_PRODUCTS");
+      console.log("Payload:", json.data);
+
+      dispatch({
+        type: GET_LINE_PRODUCTS,
+        payload: json.data,
+      });
+
+      dispatch({
+        type: SET_LINE,
+      });
+    } catch (error) {
+      console.error(error);
     }
+  };
+}
+
 
     ////
     export function getNameProduct(name) {
@@ -127,8 +153,22 @@ export function updateCartCount(increment) {
       payload: increment,
     })
   }
-}
+} USER /////
+      export function createUser(payload) {
+        return async function (dispatch) {
+          try {
+            
+            let response = await axios.post("http://localhost:3001/users", payload);
+            dispatch({
+              type: CREATE_USER,
+              payload: response.data,
+            });
 
+          } catch (error) {
+            console.log("ERROR", error);
+          }
+        };
+      }
 export function updateQuantity(itemId) {
   return async function (dispatch, getState) {  
     const state = getState();
@@ -147,6 +187,21 @@ return dispatch({
 }
 }
 
+
+      export function getUserInfo() {
+        return async function (dispatch) {
+          try {
+          let user = await axios.get("http://localhost:3001/users");
+
+            dispatch({
+              type: GET_USER_INFO,
+              payload: user.data,
+            });
+          } catch (error) {
+            console.log("ERROR", error);
+          }
+        };
+      }
 export function totalCart(){
   return async function (dispatch) {
     return dispatch({

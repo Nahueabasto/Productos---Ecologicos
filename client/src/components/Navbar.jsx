@@ -66,7 +66,7 @@ export default function Navbar() {
       <div className="log-in-sign-up">
         {isAuthenticated ? (
           <>
-            <Link to="/userprofile">Profile, </Link>
+            <Link to="/userprofile">Profile </Link>
             <LogoutButton />
           </>
         ) : (
