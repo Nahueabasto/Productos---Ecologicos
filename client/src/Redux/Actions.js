@@ -16,7 +16,8 @@ export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
 export const UPDATE_QUANTITY = "UPDATE_QUANTITY";
 export const UPDATE_CART_COUNT = "UPDATE_CART_COUNT";
 export const REMOVE_ALL = "REMOVE_ALL";
-export const TOTAL_CART = "TOTAL_CART"
+export const TOTAL_CART = "TOTAL_CART";
+export const ADD_TO_CART = "ADD_TO_CART";
 
 export function getProducts(){
     return async function(dispatch){
@@ -153,7 +154,7 @@ export function updateCartCount(increment) {
       payload: increment,
     })
   }
-} USER /////
+}  /////
       export function createUser(payload) {
         return async function (dispatch) {
           try {
