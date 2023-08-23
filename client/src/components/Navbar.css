@@ -13,10 +13,16 @@ header{
     justify-content: center;
 }
 
-h2{
+h1{
     flex: 1;
-    font-size: 100%;
-    font-family: 'Raleway', sans-serif;
+    font-size: 120%;
+    
+}
+
+.logo{
+    display: flex;
+    align-items: center; /* Centrar verticalmente los elementos */
+    gap: 10px; /* Espacio entre los elementos */
 }
 
 .logoeco{
@@ -27,4 +33,27 @@ h2{
 .text-nav{
     align-items: center;
 }
+
+.loginn {
+    display: flex;
+    padding: 0 1rem;
+  }
+
+.profile{
+    display: inline-flex; /* Cambiado a display flex */
+    align-items: center; /* Centra verticalmente */
+    padding: 10px 20px;
+    background-color: black;
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 0 1rem;
+    margin-right: 10px;
+}
+
+.profile-button:hover {
+    background-color: #333; /* Cambia el color al pasar el cursor */
+  }
 

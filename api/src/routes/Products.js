@@ -2,8 +2,9 @@ const { Router } = require("express");
 const router = Router();
 const { Products, Line, Brand } = require("../db.js")
 const { allInfo, getDb, getApi } = require('../controllers/getProducts.js')
-
-
+const { newReview } = require('../controllers/newReview.js')
+const { getReviews } = require('../controllers/getReviews.js')
+const { productById } = require('../controllers/getProductById.js')
 
 router.get('/', async (req, res) => {
   const { name } = req.query;
@@ -119,6 +120,31 @@ router.get("/:id", async (req, res) => {
       res.status(500).json({ error: error.message });
       }
     });
+
+
+
+router.get('/:id/review', async (req, res) => {
+    try {
+        const { id } = req.params;
+        let result = await getReviews(id)
+        res.status(200).send(result)
+    } catch (error) {
+        res.status(400).send(error.message)
+    }
+})
+
+    router.post('/:id/review', async(req,res)=>{ //http://localhost:3001/products/:id/review lo que tengo que usar en accion
+      try{
+          const {id} = req.params;// id del producto del que se quiere postear la review
+          const {review, rating, email} = req.body; //lo que voy a estar enviando en el formulario tiene que estar esos datos
+          let result = await newReview(id, review, rating, email)
+          res.status(200).send(result)
+      } catch (error) {
+          res.status(400).send(error.message)
+      }
+  })
+
+
 
 module.exports = router;
 
