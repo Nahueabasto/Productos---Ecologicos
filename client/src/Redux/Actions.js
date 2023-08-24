@@ -11,7 +11,13 @@ export const setSearch = "setSearch";
 export const setLine = "setLine";
 export const CREATE_USER = 'CREATE_USER';
 export const GET_USER_INFO = 'GET_USER_INFO';
-//import { loadingAction } from ".";
+//import { loadingAction } from ".";export const ADD_TO_CART = "ADD_TO_CART";
+export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
+export const UPDATE_QUANTITY = "UPDATE_QUANTITY";
+export const UPDATE_CART_COUNT = "UPDATE_CART_COUNT";
+export const REMOVE_ALL = "REMOVE_ALL";
+export const TOTAL_CART = "TOTAL_CART";
+export const ADD_TO_CART = "ADD_TO_CART";
 
 export function getProducts(){
     return async function(dispatch){
@@ -35,8 +41,8 @@ export function getDetail(id){
               type: GET_PRODUCT_DETAIL,
               payload: productDetail.data
           });
-      } catch(e){
-          console.log(e)
+      } catch(error){
+          console.error("Error fetching product data", error)
       }
     }
   }
@@ -107,8 +113,48 @@ export function getLineProducts(line) {
       }
         };
       }
-      
-      //// USER /////
+
+    export function addToCart(item) {
+      return async function (dispatch) { 
+        return dispatch({
+            type: ADD_TO_CART,
+            payload: item
+        })
+      }
+    }
+
+    export function removeFromCart(productId) {  
+      return async function (dispatch) { 
+          return dispatch({
+            type: REMOVE_FROM_CART,
+            payload: productId
+        })     
+      }
+  }
+
+  export function removeAll(productId) {
+    return async function (dispatch, getState) { 
+      const state = getState();
+      const itemToRemove = state.shoppingCart.find((item) => item.id === productId);
+      if (itemToRemove) {
+        const quantityToRemove = itemToRemove.quantity
+    dispatch({
+        type: REMOVE_ALL,
+        payload: {productId, quantityToRemove}
+    },
+  );
+}
+  };
+}
+
+export function updateCartCount(increment) {
+  return async function (dispatch) {
+    return dispatch({
+      type: UPDATE_CART_COUNT,
+      payload: increment,
+    })
+  }
+}  /////
       export function createUser(payload) {
         return async function (dispatch) {
           try {
@@ -118,13 +164,30 @@ export function getLineProducts(line) {
               type: CREATE_USER,
               payload: response.data,
             });
-      
+
           } catch (error) {
             console.log("ERROR", error);
           }
         };
       }
-      
+export function updateQuantity(itemId) {
+  return async function (dispatch, getState) {  
+    const state = getState();
+    const itemToUpdate = state.shoppingCart.find((item) => item.id === itemId);
+    if(itemToUpdate) {
+      const updatedItem = {...itemToUpdate, quantity: itemToUpdate.quantity + 1}
+    return dispatch({
+      type: UPDATE_QUANTITY,
+      payload: updatedItem
+  })
+}
+return dispatch({
+  type: UPDATE_QUANTITY,
+  payload: null, //por si el producto no está.
+})
+}
+}
+
 
       export function getUserInfo() {
         return async function (dispatch) {
@@ -140,3 +203,10 @@ export function getLineProducts(line) {
           }
         };
       }
+export function totalCart(){
+  return async function (dispatch) {
+    return dispatch({
+      type: TOTAL_CART,
+    })
+  }
+}

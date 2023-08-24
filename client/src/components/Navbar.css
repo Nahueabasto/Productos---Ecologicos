@@ -14,15 +14,9 @@ header{
 }
 
 h1{
-    flex: 1;
-    font-size: 120%;
-    
-}
-
-.logo{
-    display: flex;
-    align-items: center; /* Centrar verticalmente los elementos */
-    gap: 10px; /* Espacio entre los elementos */
+  flex: 1;
+  font-size: 120%;
+  
 }
 
 .logoeco{
@@ -34,26 +28,63 @@ h1{
     align-items: center;
 }
 
-.loginn {
-    display: flex;
-    padding: 0 1rem;
+.cart-icon-container {
+    position: relative;
+    padding-right: 15px;
+  }
+  
+  .cart-icon {
+    width: 50px;
+    height: 50px;
   }
 
-.profile{
-    display: inline-flex; /* Cambiado a display flex */
-    align-items: center; /* Centra verticalmente */
-    padding: 10px 20px;
+  .cart-icon:hover{
+   cursor: pointer;
+  }
+  
+  
+  .cart-icon-number {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    color: white;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+  }
+
+  .log-in-sign-up{
+    display: flex;
+    justify-content: center;
+    padding-right: 15px;
+  }
+
+  .profile{
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 20px; /* Aumenta el padding para agrandar el botón */
     background-color: black;
     color: white;
     text-decoration: none;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    padding: 0 1rem;
     margin-right: 10px;
+    font-size: 16px; /* Ajusta el tamaño del texto */
 }
 
 .profile-button:hover {
     background-color: #333; /* Cambia el color al pasar el cursor */
   }
+
+  .logo{
+    display: flex;
+    align-items: center; /* Centrar verticalmente los elementos */
+    gap: 10px; /* Espacio entre los elementos */
+}
 
