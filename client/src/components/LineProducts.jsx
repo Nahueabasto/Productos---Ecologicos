@@ -16,6 +16,7 @@ export default function LineProducts() {
     const { id } = useParams()
     const dispatch = useDispatch()
     const allProducts = useSelector((state) => state.products)
+    
 
     return (
         <div>

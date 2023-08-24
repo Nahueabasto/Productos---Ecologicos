@@ -34,6 +34,42 @@ h1{
     align-items: center;
 }
 
+.cart-icon-container {
+    position: relative;
+    padding-right: 15px;
+  } 
+  
+  .cart-icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .cart-icon:hover{
+   cursor: pointer;
+  }
+  
+  
+  .cart-icon-number {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    color: white;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+  }
+
+  .log-in-sign-up{
+    display: flex;
+    justify-content: center;
+    padding-right: 15px;
+  }
+
 .loginn {
     display: flex;
     padding: 0 1rem;
@@ -54,6 +90,11 @@ h1{
 }
 
 .profile-button:hover {
-    background-color: #333; /* Cambia el color al pasar el cursor */
-  }
+    background-color: #333;  
+}
 
+.logo{
+    display: flex;
+    align-items: center; /* Centrar verticalmente los elementos */
+    gap: 10px; /* Espacio entre los elementos */
+}
