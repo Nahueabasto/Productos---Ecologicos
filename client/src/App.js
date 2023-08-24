@@ -10,7 +10,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Cart from "./components/ShoppingCart/Cart";
 
 
-
 function App() {
   return (
     <BrowserRouter>

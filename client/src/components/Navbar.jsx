@@ -63,7 +63,8 @@ export default function Navbar() {
       <div className="SearchBar">
         <SearchBar />
       </div>
-      <div>
+      
+      <div className="log-in-sign-up">
         {isAuthenticated ? (
           <>
             <Link className="profile" to="/userprofile">Profile </Link>
