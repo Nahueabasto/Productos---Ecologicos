@@ -1,12 +1,10 @@
-
-
 const axios = require("axios");
 const { Products, Line, Brand } = require("../db");
 
 
 
 const getApi = async () => {
-  try {
+  
 
     //traemos todo de la api
     const allProducts = await axios.get(
@@ -65,14 +63,11 @@ const getApi = async () => {
     console.log("Database Products loaded successfully");
 
     return products;
-  } catch (error) {
-    console.log(error);
-    res.send(error);
-  }
+
 };
 
 const getDb = async () => {
-  try {
+  
     const products = await Products.findAll({
       include: [{ model: Line }, // Include the associated Line model
       { model: Brand }, // Include the associated Brand model
@@ -83,10 +78,7 @@ const getDb = async () => {
     console.log('Products loaded successfully');
 
     return products;
-  } catch (error) {
-    console.log(error);
-    res.send(error);
-  }
+
 }
 
 const allInfo = async () => {
@@ -95,7 +87,8 @@ const allInfo = async () => {
   const dbInfo = await getDb();
   return apiInfo.concat(dbInfo);
 } catch (error) {
-  return error;
+  console.log(error);
+  throw error;
 };
 }
 
