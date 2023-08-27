@@ -1,6 +1,6 @@
 import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faComments, faBoxOpen, faBox, faTruckRampBox, faBagShopping, faListCheck, faPhoneVolume, faEnvelope, faLocationDot } from '@fortawesome/free-solid-svg-icons'
+import { faPhoneVolume, faEnvelope, faLocationDot } from '@fortawesome/free-solid-svg-icons'
 import { faInstagram, faFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import EcoEcho from "../Fotos/EcoEcho.png"
 import { Link } from "react-router-dom";

@@ -2,19 +2,21 @@ import React from "react";
 import { useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { getProducts, getLineProducts } from '../Redux/Actions';
-import Card from './Card';
+import Card from "./Cards/Card";
 import Navbar from "./Navbar";
 import Menu from "./Menu";
 import Footer from "./Footer";
 import "./Home.css";
 import ProductDetail from "./Details";
 import { Route, Switch } from "react-router-dom";
-
+import { useParams } from "react-router-dom";
+import "./LineProducts.css";
 
 export default function LineProducts() {
     const { id } = useParams()
     const dispatch = useDispatch()
     const allProducts = useSelector((state) => state.products)
+    
 
     return (
         <div>
@@ -25,7 +27,7 @@ export default function LineProducts() {
                 <Menu />
             </div>
             <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet"></link>
-        <div>
+        <div className="line-container" >
 
             <div className="cards-container">
                 {allProducts?.map((el) => {
@@ -35,6 +37,7 @@ export default function LineProducts() {
                                 images={el.images}
                                 name={el.name}
                                 id={el.id}
+                                price={el.price}
                             />
                         </div>
                     );

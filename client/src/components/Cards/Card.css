@@ -1,0 +1,19 @@
+.card{
+    font-family: 'Raleway', sans-serif;
+  }
+
+.addToCart{
+  display: inline-flex;
+  padding: 5px 10px; /* Adjust padding as needed to add space around the text */
+  color: rgb(248, 244, 244);
+  background-color: #52b155;
+  border: 1px solid #0f0f0f;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 5px;
+}
+
+.addToCart:hover{
+  color: white;
+  background-color: #0f0f0f;
+}
