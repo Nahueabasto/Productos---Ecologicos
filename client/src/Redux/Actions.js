@@ -18,10 +18,11 @@ export const UPDATE_CART_COUNT = "UPDATE_CART_COUNT";
 export const REMOVE_ALL = "REMOVE_ALL";
 export const TOTAL_CART = "TOTAL_CART";
 export const ADD_TO_CART = "ADD_TO_CART";
+export const POST_REVIEW = "POST_REVIEW";
 
 export function getProducts(){
     return async function(dispatch){
-        var json = await axios.get("http://localhost:3001/products",{
+        var json = await axios.get("/products",{
         })
         return dispatch({
             type: GET_PRODUCTS,
@@ -34,7 +35,7 @@ export function getDetail(id){
     return async function(dispatch){
       try {
 
-          let productDetail = await axios.get(`http://localhost:3001/products/${id}`)
+          let productDetail = await axios.get(`/products/${id}`)
           console.log(productDetail.data);
           
           return dispatch({
@@ -48,29 +49,11 @@ export function getDetail(id){
   }
 
 
-  // export function getLineProducts(line){
-  //   return async function(dispatch){
-  //       try {
-  //       const lowercaseLine = line;
-  //       let json = await axios.get(`http://localhost:3001/products/${lowercaseLine}`)
-  //        dispatch({
-  //           type: GET_LINE_PRODUCTS,
-  //           payload: json.data
-  //       })
-  //       dispatch({
-  //         type: SET_LINE,
-  //       });
-  //   } catch (error) {
-  //       console.error(error);
-  //   }
-  //   }
-//}
-
 export function getLineProducts(line) {
   return async function (dispatch) {
     try {
       const lowercaseLine = line;
-      let json = await axios.get(`http://localhost:3001/products/line/${lowercaseLine}`);
+      let json = await axios.get(`/products/line/${lowercaseLine}`);
 
       console.log("Action: GET_LINE_PRODUCTS");
       console.log("Payload:", json.data);
@@ -94,7 +77,7 @@ export function getLineProducts(line) {
     export function getNameProduct(name) {
         return async function (dispatch) {
           try {
-            const response = await axios.get(`http://localhost:3001/products?name=${name}`);
+            const response = await axios.get(`/products?name=${name}`);
             dispatch({
               type: SEARCH_SUCCESS,
               payload: response.data,
@@ -159,7 +142,7 @@ export function updateCartCount(increment) {
         return async function (dispatch) {
           try {
             
-            let response = await axios.post("http://localhost:3001/users", payload);
+            let response = await axios.post("/users", payload);
             dispatch({
               type: CREATE_USER,
               payload: response.data,
@@ -192,7 +175,7 @@ return dispatch({
       export function getUserInfo() {
         return async function (dispatch) {
           try {
-          let user = await axios.get("http://localhost:3001/users");
+          let user = await axios.get("/users");
 
             dispatch({
               type: GET_USER_INFO,
@@ -209,4 +192,19 @@ export function totalCart(){
       type: TOTAL_CART,
     })
   }
+}
+
+
+export function postReview(id, payload) {
+  return async function (dispatch) {
+    try {
+      let info = await axios.post(`/products/${id}/review`, payload);
+      return dispatch({
+        type: POST_REVIEW,
+        payload: info.data,
+      });
+    } catch (error) {
+      console.log("ERROR", error);
+    }
+  };
 }

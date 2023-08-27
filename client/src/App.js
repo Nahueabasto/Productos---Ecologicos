@@ -8,9 +8,17 @@ import LineProducts from './components/LineProducts';
 import UserInfo from './components/UserProfile/UserInfo';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Cart from "./components/ShoppingCart/Cart";
+import axios from 'axios';
 
 
 function App() {
+
+  if (window.location.hostname === 'localhost') {
+    axios.defaults.baseURL = 'http://localhost:3001';
+  } else {
+    axios.defaults.baseURL = 'back';
+  }
+  
   return (
     <BrowserRouter>
       <div className="App">

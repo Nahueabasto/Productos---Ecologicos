@@ -6,6 +6,8 @@ import "./Details.css";
 import Navbar from "./Navbar";
 import Menu from "./Menu";
 import Footer from "./Footer";
+import ReviewsCreate from "./Reviews/ReviewsCreate";
+
 
 export default function ProductDetail() {
   const { id } = useParams();
@@ -106,6 +108,9 @@ export default function ProductDetail() {
           <div className="buttons-container">
           <button onClick={handleAddToCart}>Add to Cart</button>
           <button onClick={() => handleRemoveFromCart(details.id)}>Remove from Cart</button>
+          </div>
+          <div>
+          <ReviewsCreate />
           </div>
           </div>
         </div>
