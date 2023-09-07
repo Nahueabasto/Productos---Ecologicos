@@ -91,3 +91,33 @@ cursor: pointer;
 .buttons-container button:hover {
   background-color: #85d8a1;
 }
+
+
+.reviews-contenedor {
+  margin: 0 auto;
+  max-width: 1300px;
+  padding: 0 80px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-gap: 0px;
+  margin-top: 50px;
+}
+
+.texto {
+  grid-column: 1; /* Coloca .texto en la columna 1 (lado izquierdo) */
+}
+
+.review {
+  grid-column: 2; /* Coloca .review en la columna 2 (lado derecho) */
+}
+
+.separador {
+  margin-top: 2000px; /* Ajusta el espaciado superior según sea necesario */
+  border: 1px solid #ccc; /* Estilo de la línea separadora */
+}
+
+
+
+
+
+

@@ -8,11 +8,10 @@ const getUserId = async function (id) {
             where: {
                 id: id,
             },
-            // include: 
-            // [    { model: Review },
-            //      { model: ShoppingCart },
-            //      { model: Order }
-            // ]
+            include: 
+            [    { model: Review },
+                
+            ]
         })
         if (user) {
             return user

@@ -1,20 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getDetail, addToCart, removeFromCart, updateCartCount } from "../Redux/Actions";
+import { getDetail, addToCart, removeFromCart, updateCartCount, getReview } from "../Redux/Actions";
 import "./Details.css";
 import Navbar from "./Navbar";
 import Menu from "./Menu";
 import Footer from "./Footer";
-import ReviewsCreate from "./Reviews/ReviewsCreate";
-
+import StarRatings from 'react-star-ratings';
 
 export default function ProductDetail() {
   const { id } = useParams();
   const details = useSelector((state) => state.detail);
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.shoppingCart);
+  const reviews = useSelector((state) => state.reviews);
   console.log(details);
+
+  const [rating, setRating] = useState(0);
 
   const [imageUrls, setImageUrls] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
@@ -22,6 +24,7 @@ export default function ProductDetail() {
 
   useEffect(() => {
     dispatch(getDetail(id));
+    dispatch(getReview(id))
   }, [dispatch, id]);
 
   useEffect(() => {
@@ -109,12 +112,30 @@ export default function ProductDetail() {
           <button onClick={handleAddToCart}>Add to Cart</button>
           <button onClick={() => handleRemoveFromCart(details.id)}>Remove from Cart</button>
           </div>
-          <div>
-          <ReviewsCreate />
-          </div>
           </div>
         </div>
       )}
+
+<div className="reviews-contenedor">
+    <div className="texto"> 
+      Puntuaciones:
+      </div>
+      <div className="review">
+      {reviews.map((review) => (
+        <div key={review.id}>
+          <StarRatings
+        rating={review.rating} // Debes especificar el nombre de la prop (rating)
+        starRatedColor="green"
+        starDimension="25px"
+      />
+          <p>{review.review}</p>
+          {/* <p>Product ID: {review.productId}</p> */}
+          {/* Puedes mostrar más detalles de la revisión aquí */}
+        </div>
+      ))}
+      </div>
+      <hr className="separador" /> {/* Línea separadora */}
+    </div>
 
       <div>
         <Footer />

@@ -19,6 +19,7 @@ export const REMOVE_ALL = "REMOVE_ALL";
 export const TOTAL_CART = "TOTAL_CART";
 export const ADD_TO_CART = "ADD_TO_CART";
 export const POST_REVIEW = "POST_REVIEW";
+export const GET_REVIEWS = "GET_REVIEWS";
 
 export function getProducts(){
     return async function(dispatch){
@@ -208,3 +209,19 @@ export function postReview(id, payload) {
     }
   };
 }
+
+export function getReview(id) {
+  return async function (dispatch) {
+    try {
+      console.log(id);
+      const response = await axios.get(`/products/${id}/review`); 
+      dispatch({
+        type: GET_REVIEWS,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.error('Error al obtener la revisión:', error);
+    }
+  };
+}
+

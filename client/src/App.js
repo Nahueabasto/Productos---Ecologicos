@@ -29,8 +29,8 @@ function App() {
           <Route exact path="/:id" render={({match}) => <ProductDetail id={match.params.id}/>} />
           <Route exact path="/products/:lineParam" component={Home} />
           <Route exact path="/category/:categoryName" component={LineProducts} />
-          
           <Route exact path="/shoppingcart" component={Cart} />
+
         </Switch>
       </div>
     </BrowserRouter>

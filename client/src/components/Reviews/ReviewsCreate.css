@@ -1,0 +1,32 @@
+/* form{
+    display: flex;
+    height: 100px;
+    background-color: #858383;
+    align-items: center;
+    justify-content: space-between; 
+    padding: 20px;
+    font-family: 'Raleway', sans-serif;
+} */
+
+.reviews{
+    margin-top: 50px;
+}
+
+.form-control{
+    height: 60px;
+    padding: 20px;
+    width: 80%;
+    margin-left: 100px;
+}
+
+.primary{
+    display: inline-flex;
+  padding: 5px 10px; /* Adjust padding as needed to add space around the text */
+  color: rgb(248, 244, 244);
+  background-color: #52b155;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 5px;
+  margin-top: 5px;
+  
+}

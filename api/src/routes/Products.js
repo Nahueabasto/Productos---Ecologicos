@@ -1,10 +1,12 @@
 const { Router } = require("express");
 const router = Router();
-const { Products, Line, Brand } = require("../db.js")
+const { Products, Line, Brand, Review } = require("../db.js")
 const { allInfo, getDb, getApi } = require('../controllers/getProducts.js')
 const { newReview } = require('../controllers/newReview.js')
 const { getReviews } = require('../controllers/getReviews.js')
 const { productById } = require('../controllers/getProductById.js')
+const { ProductController } = require('../controllers/ProductController.js');
+
 
 router.get('/', async (req, res) => {
   const { name } = req.query;
@@ -95,6 +97,8 @@ router.get("/:id", async (req, res) => {
   }
   });
 
+
+
   router.get("/line/:line", async (req, res) => {
     let lineParam = req.params.line;
     
@@ -121,6 +125,16 @@ router.get("/:id", async (req, res) => {
       }
     });
 
+    router.get('/:idProduct', async (req, res) => {
+      const productId = req.params.idProduct
+      try {
+          let result = await productById(productId);
+          res.status(200).send(result)
+      } catch (error) {
+          res.status(400).send(error.message)
+      }
+  });
+
 
 
 router.get('/:id/review', async (req, res) => {
@@ -144,6 +158,17 @@ router.get('/:id/review', async (req, res) => {
       }
   })
 
+  router.get('/:productId/average-rating', async (req, res) => {
+    const productId = req.params.productId;
+    try {
+      const promedioRating = await ProductController(productId); 
+      res.json({ promedioRating });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Error al calcular el promedio de rating.' });
+    }
+  });
+  
 
 
 module.exports = router;
