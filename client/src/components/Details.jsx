@@ -1,20 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getDetail, addToCart, removeFromCart, updateCartCount, getReview } from "../Redux/Actions";
+import { getDetail, addToCart, removeFromCart, updateCartCount, getReview, calculateAverageRating } from "../Redux/Actions";
 import "./Details.css";
 import Navbar from "./Navbar";
 import Menu from "./Menu";
 import Footer from "./Footer";
 import StarRatings from 'react-star-ratings';
+import Review from "./Reviews/Reviews";
+import Rating from "./Reviews/Rating";
 
 export default function ProductDetail() {
   const { id } = useParams();
+  const { productId } = useParams();
   const details = useSelector((state) => state.detail);
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.shoppingCart);
   const reviews = useSelector((state) => state.reviews);
-  console.log(details);
+  
+ 
 
   const [rating, setRating] = useState(0);
 
@@ -26,6 +30,7 @@ export default function ProductDetail() {
     dispatch(getDetail(id));
     dispatch(getReview(id))
   }, [dispatch, id]);
+
 
   useEffect(() => {
     if (details && details.images) {
@@ -68,6 +73,7 @@ export default function ProductDetail() {
 
   return (
     <div className="contenedor-principal">
+      
       <div>
         <Navbar />
       </div>
@@ -116,26 +122,26 @@ export default function ProductDetail() {
         </div>
       )}
 
+
 <div className="reviews-contenedor">
+  
     <div className="texto"> 
-      Puntuaciones:
+    <Rating promedioRating={reviews.promedioRating} />
       </div>
       <div className="review">
-      {reviews.map((review) => (
-        <div key={review.id}>
-          <StarRatings
-        rating={review.rating} // Debes especificar el nombre de la prop (rating)
-        starRatedColor="green"
-        starDimension="25px"
-      />
-          <p>{review.review}</p>
-          {/* <p>Product ID: {review.productId}</p> */}
-          {/* Puedes mostrar más detalles de la revisión aquí */}
-        </div>
-      ))}
+    {reviews && reviews.reviews && reviews.reviews.map((review) => (
+      <div key={review.id}>
+        <Review
+                key={review.id}
+                rating={review.rating}
+                review={review.review}
+                userId={review.userId}
+                user={review.user}
+              />
       </div>
-      <hr className="separador" /> {/* Línea separadora */}
-    </div>
+    ))}
+  </div>
+</div>
 
       <div>
         <Footer />

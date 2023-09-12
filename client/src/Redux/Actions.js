@@ -20,6 +20,8 @@ export const TOTAL_CART = "TOTAL_CART";
 export const ADD_TO_CART = "ADD_TO_CART";
 export const POST_REVIEW = "POST_REVIEW";
 export const GET_REVIEWS = "GET_REVIEWS";
+export const CALCULATE_AVERAGE_RATING = "CALCULATE_AVERAGE_RATING";
+export const SORT_PRODUCTS_BY_RATING = "SORT_PRODUCTS_BY_RATING";
 
 export function getProducts(){
     return async function(dispatch){
@@ -213,7 +215,7 @@ export function postReview(id, payload) {
 export function getReview(id) {
   return async function (dispatch) {
     try {
-      console.log(id);
+      //console.log(id);
       const response = await axios.get(`/products/${id}/review`); 
       dispatch({
         type: GET_REVIEWS,
@@ -224,4 +226,24 @@ export function getReview(id) {
     }
   };
 }
+
+export function calculateAverageRating(productId) {
+  return async function (dispatch) {
+    try {
+      console.log(productId);
+      const response = await axios.get(`/products/${productId}/average-rating`); 
+      dispatch({
+        type: CALCULATE_AVERAGE_RATING,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.error('Error al obtener la revisión:', error);
+    }
+  };
+}
+
+
+export const sortProductsByRating = () => ({
+  type: SORT_PRODUCTS_BY_RATING,
+});
 

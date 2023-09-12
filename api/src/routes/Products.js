@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const router = Router();
-const { Products, Line, Brand, Review } = require("../db.js")
+const { Products, Line, Brand, Review, User } = require("../db.js")
 const { allInfo, getDb, getApi } = require('../controllers/getProducts.js')
 const { newReview } = require('../controllers/newReview.js')
 const { getReviews } = require('../controllers/getReviews.js')
@@ -26,8 +26,6 @@ router.get('/', async (req, res) => {
       );
     }
 
-    
-
     // Si no hay productos en la base de datos, llamar a la función getApi para obtenerlos desde la API
     if (products.length === 0) {
       const info = await allInfo();
@@ -35,7 +33,6 @@ router.get('/', async (req, res) => {
       // Crear los productos en la base de datos
       await Promise.all(
         info.map(async (product) => {
-
           const filteredProduct = {
             name: product.name,
             price: product.price,
@@ -49,6 +46,7 @@ router.get('/', async (req, res) => {
             where: { name: product.name },
             defaults: filteredProduct
           });
+
           if (!created) {
             await newProduct.update(product);
           }
@@ -64,12 +62,27 @@ router.get('/', async (req, res) => {
       });
     }
 
-    // Devolver los productos
-    res.status(200).send(products);
+    // Obtener revisiones para cada producto
+    const productsWithReviews = await Promise.all(
+      products.map(async (product) => {
+        // Llama a la función getReviews pasando el ID del producto
+        const reviews = await getReviews(product.id);
+        // Agrega las revisiones al producto
+        return {
+          ...product.toJSON(),
+          reviews
+        };
+      })
+    );
+
+    // Devolver los productos con sus revisiones
+    res.status(200).send(productsWithReviews);
   } catch (error) {
     res.status(400).send(error.message);
   }
 });
+
+
 
 
 router.get("/:id", async (req, res) => {
@@ -158,16 +171,16 @@ router.get('/:id/review', async (req, res) => {
       }
   })
 
-  router.get('/:productId/average-rating', async (req, res) => {
-    const productId = req.params.productId;
-    try {
-      const promedioRating = await ProductController(productId); 
-      res.json({ promedioRating });
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Error al calcular el promedio de rating.' });
-    }
-  });
+  // router.get('/:productId/average-rating', async (req, res) => {
+  //   const productId = req.params.productId;
+  //   try {
+  //     const promedioRating = await ProductController(productId); 
+  //     res.json({ productId, promedioRating });
+  //   } catch (error) {
+  //     console.error(error);
+  //     res.status(500).json({ error: 'Error al calcular el promedio de rating.' });
+  //   }
+  // });
   
 
 

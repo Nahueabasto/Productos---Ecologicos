@@ -14,6 +14,8 @@ const UserProfile = ({ id }) => {
   const userInfo = useSelector((state) => state.userInfo);
   const [userObj, setUserObj] = useState(null);
 
+  //console.log(userInfo)
+
   useEffect(() => {
     dispatch(getUserInfo(id));
   }, [dispatch, id]);
@@ -32,6 +34,7 @@ const UserProfile = ({ id }) => {
     }
   }, [userInfo, user]);
 
+  console.log(userObj)
 
 
   return (

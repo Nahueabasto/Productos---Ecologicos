@@ -8,6 +8,7 @@ import "./ReviewsCreate.css"
 export default function ReviewsCreate({idProduct, userEmail}){
 
     const dispatch = useDispatch();
+    
     const [rating, setRating] = useState(0);
     const [content, setContent] = useState('');
 

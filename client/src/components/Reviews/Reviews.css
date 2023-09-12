@@ -1,0 +1,36 @@
+/* styles.css o tu archivo de estilos personalizado */
+
+.review-card {
+    background-color: #fff; /* Fondo blanco */
+    border: 1px solid #e0e0e0; /* Borde suave */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    padding: 16px; /* Espacio interno */
+    margin-bottom: 16px; /* Espacio entre tarjetas */
+    
+  }
+  
+  .review-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+
+  }
+  
+  .review-header p {
+    margin-left: 8px;
+    font-weight: bold;
+    
+  }
+  
+  .review-card p {
+    font-size: 16px; /* Tamaño de fuente */
+    line-height: 1.4; /* Espacio entre líneas */
+    text-align: left; /* Alinea el texto a la izquierda */
+    /* overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis; */
+  }
+  
+  /* Otros estilos personalizados según tus necesidades */
+  
