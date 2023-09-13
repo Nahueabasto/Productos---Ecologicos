@@ -5,8 +5,8 @@ const { allInfo, getDb, getApi } = require('../controllers/getProducts.js')
 const { newReview } = require('../controllers/newReview.js')
 const { getReviews } = require('../controllers/getReviews.js')
 const { productById } = require('../controllers/getProductById.js')
-const { ProductController } = require('../controllers/ProductController.js');
-
+const { deleteReview } = require('../controllers/deleteReview.js');
+const { updateReview } = require('../controllers/updateReview.js');
 
 router.get('/', async (req, res) => {
   const { name } = req.query;
@@ -171,18 +171,30 @@ router.get('/:id/review', async (req, res) => {
       }
   })
 
-  // router.get('/:productId/average-rating', async (req, res) => {
-  //   const productId = req.params.productId;
-  //   try {
-  //     const promedioRating = await ProductController(productId); 
-  //     res.json({ productId, promedioRating });
-  //   } catch (error) {
-  //     console.error(error);
-  //     res.status(500).json({ error: 'Error al calcular el promedio de rating.' });
-  //   }
-  // });
-  
+  router.delete('/:id/review/:idReview', async (req, res) => {
+    try {
+        const { idReview } = req.params
 
+        let result = await deleteReview(idReview)
+        res.status(200).send(result)
+
+    } catch (error) {
+        res.status(400).send(error.message)
+
+    }
+})
+
+router.put('/:id/review/:idReview', async (req, res) => {
+  try {
+      const { id, idReview } = req.params
+      const { review, rating } = req.body;
+
+      let result = await updateReview(idReview, review, rating)
+      res.status(200).send(result)
+  } catch (error) {
+      res.status(400).send(error.message)
+  }
+})
 
 module.exports = router;
 
