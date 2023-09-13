@@ -189,6 +189,7 @@ return dispatch({
           }
         };
       }
+      
 export function totalCart(){
   return async function (dispatch) {
     return dispatch({

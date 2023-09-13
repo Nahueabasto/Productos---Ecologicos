@@ -27,9 +27,9 @@ export default function Home() {
   // const [userObj, setUserObj] = useState(null);
    const [loading, setLoading] = useState(true);
 
-
-
   const { user, isAuthenticated, isLoading } = useAuth0();
+  const userInfo = useSelector((state) => state.userInfo);
+  const [userObj, setUserObj] = useState(null);
 
   useEffect(() => {
     if (isAuthenticated && !isLoading) {
@@ -53,6 +53,22 @@ export default function Home() {
   const filteredProducts = allProducts.filter(
     (product) => product.category === categoryName
   );
+
+/////////////////////
+  useEffect(() => {
+    // Si userInfo y user están disponibles, busca el usuario que coincide con el email
+    if (userInfo && user) {
+      for (const userObj of userInfo) {
+        if (userObj.email === user.email) {
+          setUserObj(userObj); // Almacena el usuario encontrado en el estado local
+          break; // Puedes detener la búsqueda si ya encontraste al usuario
+        }
+      }
+    }
+  }, [userInfo, user]);
+
+  console.log(userObj)
+////////////////////////////
 
 ///////
   useEffect(() => {
