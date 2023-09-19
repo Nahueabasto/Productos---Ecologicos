@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getDetail, addToCart, removeFromCart, updateCartCount, getUserInfo } from "../Redux/Actions";
+import { getDetail, addToCart, removeFromCart, updateCartCount, getReview, calculateAverageRating } from "../Redux/Actions";
 import "./Details.css";
 import Navbar from "./Navbar";
 import Menu from "./Menu";
@@ -9,14 +10,23 @@ import Footer from "./Footer";
 import AddedToCartModal from "./ShoppingCart/AddedToCartModal";
 import useAuthData from "./ShoppingCart/useAuthData"; // Import the custom hook
 
+import StarRatings from 'react-star-ratings';
+import Review from "./Reviews/Reviews";
+import Rating from "./Reviews/Rating";
 
 export default function ProductDetail() {
   const { id } = useParams();
+  const { productId } = useParams();
   const details = useSelector((state) => state.detail);
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.shoppingCart);
   const userInfo = useSelector((state) => state.userInfo);
   console.log(details);
+  const reviews = useSelector((state) => state.reviews);
+  
+ 
+
+  const [rating, setRating] = useState(0);
 
   const [addedItem, setAddedItem] = useState(null);
 
@@ -29,7 +39,9 @@ export default function ProductDetail() {
   useEffect(() => {
     dispatch(getDetail(id));
     dispatch(getUserInfo());
+    dispatch(getReview(id))
   }, [dispatch, id]);
+
 
   useEffect(() => {
     if (details && details.images) {
@@ -89,6 +101,7 @@ export default function ProductDetail() {
 
   return (
     <div className="contenedor-principal">
+      
       <div>
         <Navbar />
       </div>
@@ -139,6 +152,27 @@ export default function ProductDetail() {
           </div>
         </div>
       )}
+
+
+<div className="reviews-contenedor">
+  
+    <div className="texto"> 
+    <Rating promedioRating={reviews.promedioRating} />
+      </div>
+      <div className="review">
+    {reviews && reviews.reviews && reviews.reviews.map((review) => (
+      <div key={review.id}>
+        <Review
+                key={review.id}
+                rating={review.rating}
+                review={review.review}
+                userId={review.userId}
+                user={review.user}
+              />
+      </div>
+    ))}
+  </div>
+</div>
 
       <div>
         <Footer />

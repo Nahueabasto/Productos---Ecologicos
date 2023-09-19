@@ -1,10 +1,12 @@
 const { Router } = require("express");
 const router = Router();
-const { Products, Line, Brand } = require("../db.js")
+const { Products, Line, Brand, Review, User } = require("../db.js")
 const { allInfo, getDb, getApi } = require('../controllers/getProducts.js')
 const { newReview } = require('../controllers/newReview.js')
 const { getReviews } = require('../controllers/getReviews.js')
 const { productById } = require('../controllers/getProductById.js')
+const { deleteReview } = require('../controllers/deleteReview.js');
+const { updateReview } = require('../controllers/updateReview.js');
 
 router.get('/', async (req, res) => {
   const { name } = req.query;
@@ -24,8 +26,6 @@ router.get('/', async (req, res) => {
       );
     }
 
-    
-
     // Si no hay productos en la base de datos, llamar a la función getApi para obtenerlos desde la API
     if (products.length === 0) {
       const info = await allInfo();
@@ -33,7 +33,6 @@ router.get('/', async (req, res) => {
       // Crear los productos en la base de datos
       await Promise.all(
         info.map(async (product) => {
-
           const filteredProduct = {
             name: product.name,
             price: product.price,
@@ -47,6 +46,7 @@ router.get('/', async (req, res) => {
             where: { name: product.name },
             defaults: filteredProduct
           });
+
           if (!created) {
             await newProduct.update(product);
           }
@@ -62,12 +62,27 @@ router.get('/', async (req, res) => {
       });
     }
 
-    // Devolver los productos
-    res.status(200).send(products);
+    // Obtener revisiones para cada producto
+    const productsWithReviews = await Promise.all(
+      products.map(async (product) => {
+        // Llama a la función getReviews pasando el ID del producto
+        const reviews = await getReviews(product.id);
+        // Agrega las revisiones al producto
+        return {
+          ...product.toJSON(),
+          reviews
+        };
+      })
+    );
+
+    // Devolver los productos con sus revisiones
+    res.status(200).send(productsWithReviews);
   } catch (error) {
     res.status(400).send(error.message);
   }
 });
+
+
 
 
 router.get("/:id", async (req, res) => {
@@ -95,6 +110,8 @@ router.get("/:id", async (req, res) => {
   }
   });
 
+
+
   router.get("/line/:line", async (req, res) => {
     let lineParam = req.params.line;
     
@@ -121,6 +138,16 @@ router.get("/:id", async (req, res) => {
       }
     });
 
+    router.get('/:idProduct', async (req, res) => {
+      const productId = req.params.idProduct
+      try {
+          let result = await productById(productId);
+          res.status(200).send(result)
+      } catch (error) {
+          res.status(400).send(error.message)
+      }
+  });
+
 
 
 router.get('/:id/review', async (req, res) => {
@@ -144,7 +171,30 @@ router.get('/:id/review', async (req, res) => {
       }
   })
 
+  router.delete('/:id/review/:idReview', async (req, res) => {
+    try {
+        const { idReview } = req.params
 
+        let result = await deleteReview(idReview)
+        res.status(200).send(result)
+
+    } catch (error) {
+        res.status(400).send(error.message)
+
+    }
+})
+
+router.put('/:id/review/:idReview', async (req, res) => {
+  try {
+      const { id, idReview } = req.params
+      const { review, rating } = req.body;
+
+      let result = await updateReview(idReview, review, rating)
+      res.status(200).send(result)
+  } catch (error) {
+      res.status(400).send(error.message)
+  }
+})
 
 module.exports = router;
 

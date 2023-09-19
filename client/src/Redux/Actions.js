@@ -19,10 +19,14 @@ export const REMOVE_ALL = "REMOVE_ALL";
 export const TOTAL_CART = "TOTAL_CART";
 export const ADD_TO_CART = "ADD_TO_CART";
 export const REFRESH_CART = "REFRESH_CART";
+export const POST_REVIEW = "POST_REVIEW";
+export const GET_REVIEWS = "GET_REVIEWS";
+export const CALCULATE_AVERAGE_RATING = "CALCULATE_AVERAGE_RATING";
+export const SORT_PRODUCTS_BY_RATING = "SORT_PRODUCTS_BY_RATING";
 
 export function getProducts(){
     return async function(dispatch){
-        var json = await axios.get("http://localhost:3001/products",{
+        var json = await axios.get("/products",{
         })
         return dispatch({
             type: GET_PRODUCTS,
@@ -35,7 +39,7 @@ export function getDetail(id){
     return async function(dispatch){
       try {
 
-          let productDetail = await axios.get(`http://localhost:3001/products/${id}`)
+          let productDetail = await axios.get(`/products/${id}`)
           console.log(productDetail.data);
           
           return dispatch({
@@ -49,29 +53,11 @@ export function getDetail(id){
   }
 
 
-  // export function getLineProducts(line){
-  //   return async function(dispatch){
-  //       try {
-  //       const lowercaseLine = line;
-  //       let json = await axios.get(`http://localhost:3001/products/${lowercaseLine}`)
-  //        dispatch({
-  //           type: GET_LINE_PRODUCTS,
-  //           payload: json.data
-  //       })
-  //       dispatch({
-  //         type: SET_LINE,
-  //       });
-  //   } catch (error) {
-  //       console.error(error);
-  //   }
-  //   }
-//}
-
 export function getLineProducts(line) {
   return async function (dispatch) {
     try {
       const lowercaseLine = line;
-      let json = await axios.get(`http://localhost:3001/products/line/${lowercaseLine}`);
+      let json = await axios.get(`/products/line/${lowercaseLine}`);
 
       console.log("Action: GET_LINE_PRODUCTS");
       console.log("Payload:", json.data);
@@ -95,7 +81,7 @@ export function getLineProducts(line) {
     export function getNameProduct(name) {
         return async function (dispatch) {
           try {
-            const response = await axios.get(`http://localhost:3001/products?name=${name}`);
+            const response = await axios.get(`/products?name=${name}`);
             dispatch({
               type: SEARCH_SUCCESS,
               payload: response.data,
@@ -184,7 +170,7 @@ export function updateCartCount(increment) {
         return async function (dispatch) {
           try {
             
-            let response = await axios.post("http://localhost:3001/users", payload);
+            let response = await axios.post("/users", payload);
             dispatch({
               type: CREATE_USER,
               payload: response.data,
@@ -217,7 +203,7 @@ return dispatch({
       export function getUserInfo() {
         return async function (dispatch) {
           try {
-          let user = await axios.get("http://localhost:3001/users");
+          let user = await axios.get("/users");
 
             dispatch({
               type: GET_USER_INFO,
@@ -229,6 +215,7 @@ return dispatch({
         };
       }
 
+      
 export function totalCart(){
   return async function (dispatch) {
     return dispatch({
@@ -252,3 +239,54 @@ export function refreshCart(userId) {
     } 
   }
 }
+
+
+export function postReview(id, payload) {
+  return async function (dispatch) {
+    try {
+      let info = await axios.post(`/products/${id}/review`, payload);
+      return dispatch({
+        type: POST_REVIEW,
+        payload: info.data,
+      });
+    } catch (error) {
+      console.log("ERROR", error);
+    }
+  };
+}
+
+export function getReview(id) {
+  return async function (dispatch) {
+    try {
+      //console.log(id);
+      const response = await axios.get(`/products/${id}/review`); 
+      dispatch({
+        type: GET_REVIEWS,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.error('Error al obtener la revisión:', error);
+    }
+  };
+}
+
+export function calculateAverageRating(productId) {
+  return async function (dispatch) {
+    try {
+      console.log(productId);
+      const response = await axios.get(`/products/${productId}/average-rating`); 
+      dispatch({
+        type: CALCULATE_AVERAGE_RATING,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.error('Error al obtener la revisión:', error);
+    }
+  };
+}
+
+
+export const sortProductsByRating = () => ({
+  type: SORT_PRODUCTS_BY_RATING,
+});
+

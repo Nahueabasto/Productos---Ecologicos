@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts, getLineProducts, totalCart, createUser, getUserInfo } from '../Redux/Actions';
+<<<<<<< HEAD
 import Paginado from "./Cards/Paginado"; 
+=======
+import Paginado from "./Cards/Paginado";
+>>>>>>> 7ac766462e3ee579297df54ee3f7d903d23b0b2f
 import Navbar from "./Navbar";
 import Menu from "./Menu";
 import Footer from "./Footer";
@@ -27,9 +31,9 @@ export default function Home() {
   // const [userObj, setUserObj] = useState(null);
    const [loading, setLoading] = useState(true);
 
-
-
   const { user, isAuthenticated, isLoading } = useAuth0();
+  const userInfo = useSelector((state) => state.userInfo);
+  const [userObj, setUserObj] = useState(null);
 
   useEffect(() => {
     if (isAuthenticated && !isLoading) {
@@ -55,9 +59,26 @@ export default function Home() {
     (product) => product.category === categoryName
   );
 
+/////////////////////
+  useEffect(() => {
+    // Si userInfo y user están disponibles, busca el usuario que coincide con el email
+    if (userInfo && user) {
+      for (const userObj of userInfo) {
+        if (userObj.email === user.email) {
+          setUserObj(userObj); // Almacena el usuario encontrado en el estado local
+          break; // Puedes detener la búsqueda si ya encontraste al usuario
+        }
+      }
+    }
+  }, [userInfo, user]);
+
+  console.log(userObj)
+////////////////////////////
+
 ///////
   useEffect(() => {
     dispatch(getProducts());
+    dispatch(getUserInfo())
   }, [dispatch]);
 
   useEffect(() => {

@@ -1,4 +1,4 @@
-import { GET_PRODUCTS, GET_PRODUCT_DETAIL, GET_LINE_PRODUCTS, SET_LINE, FOOTER, SEARCH_SUCCESS, SET_SEARCH, ADD_TO_CART, REMOVE_FROM_CART, UPDATE_QUANTITY, UPDATE_CART_COUNT, REMOVE_ALL, TOTAL_CART , CREATE_USER, GET_USER_INFO, REFRESH_CART } from "./Actions";
+import { GET_PRODUCTS, GET_PRODUCT_DETAIL, GET_LINE_PRODUCTS, SET_LINE, FOOTER, SEARCH_SUCCESS, SET_SEARCH, ADD_TO_CART, REMOVE_FROM_CART, UPDATE_QUANTITY, UPDATE_CART_COUNT, REMOVE_ALL, TOTAL_CART , CREATE_USER, GET_USER_INFO, POST_REVIEW, REFRESH_CART, GET_REVIEWS } from "./Actions";
 
 
 const initialState = {
@@ -16,6 +16,7 @@ const initialState = {
     shoppingCart: [],
     cartCount: 0,
     totalCart: 0,
+    reviews: [],
 }
 
 function reducer (state = initialState, action) {
@@ -167,6 +168,10 @@ switch (action.type) {
         ...state,
         userInfo: action.payload,
       };
+      case POST_REVIEW:
+      return {
+        ...state,
+      };
 
       /*case REFRESH_CART:
         const updatedCart = action.payload.map((cartItem) => {
@@ -184,6 +189,11 @@ switch (action.type) {
           totalCart: calculateTotalCart(updatedCart), // Implement a function to calculate total
         };
      */
+      case GET_REVIEWS:
+        return {
+          ...state,
+          reviews: action.payload,
+        }
 
     default:
         return state

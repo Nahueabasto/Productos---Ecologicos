@@ -4,11 +4,6 @@ module.exports = (sequelize) => {
   sequelize.define(
     "review",
     {
-        productId: {
-            type: DataTypes.INTEGER,
-            autoIncrement: true,
-            primaryKey: true,
-          },
       rating: {
         type: DataTypes.INTEGER,
         allowNull: false,

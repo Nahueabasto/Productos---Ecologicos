@@ -1,0 +1,22 @@
+.average{
+    font-size: 35px;
+    display: flex; /* Hace que los elementos dentro del contenedor estén en línea horizontal */
+  align-items: center; /* Centra verticalmente los elementos hijos */
+}
+
+.contenedor-rating {
+  display: flex; /* Hace que los elementos dentro del contenedor estén en línea horizontal */
+  align-items: center; /* Centra verticalmente los elementos hijos */
+}
+
+.numero-promedio {
+  color: dodgerblue;
+  font-size: 40px;
+  font-weight: bold;
+  margin-right: 10px; /* Ajusta este valor según el espacio deseado entre número y estrellas */
+  margin-top: -5px;
+}
+
+.rating {
+  margin-top: -25px;
+}
