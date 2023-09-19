@@ -1,24 +1,46 @@
-import React from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { addToCart } from "../../Redux/Actions";
+import { addToCart, getUserInfo } from "../../Redux/Actions";
+import AddedToCartModal from "../ShoppingCart/AddedToCartModal";
 import "./Card.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function Card({ id, images, name, price }) {
   const imageUrls = images.split(", ");
   const firstImageUrl = imageUrls[0]; // Obtener la primera URL de imagen
+  const [addedItem, setAddedItem] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+
+
+  const userInfo = useSelector((state) => state.userInfo);
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUserInfo());
+  }, []);
   
   const handleAddToCart = () => {
     console.log("Adding item to cart:");
+    console.log("User info:", userInfo);
+   const newItem = {
+      id: id,
+      name: name,
+      price: price,
+      img: firstImageUrl,
+      quantity: 1,
+    };
+    setAddedItem(newItem);
+    setShowModal(true);
     dispatch(
       addToCart({
         id: id,
         name: name,
         price: price,
-        img: firstImageUrl
+        img: firstImageUrl,
+        quantity: 1,
+        userId: userInfo[0].id,
       }),
       )
   }
@@ -37,8 +59,12 @@ export default function Card({ id, images, name, price }) {
         </div>
       </Link>
       <button className="addToCart" onClick={handleAddToCart}>Add to Cart</button>
+      <AddedToCartModal  isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        addedProduct={addedItem} />
     </div>
   );
 }
+
 
 

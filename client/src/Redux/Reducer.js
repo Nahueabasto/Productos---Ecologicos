@@ -1,4 +1,4 @@
-import { GET_PRODUCTS, GET_PRODUCT_DETAIL, GET_LINE_PRODUCTS, SET_LINE, FOOTER, SEARCH_SUCCESS, SET_SEARCH, ADD_TO_CART, REMOVE_FROM_CART, UPDATE_QUANTITY, UPDATE_CART_COUNT, REMOVE_ALL, TOTAL_CART , CREATE_USER, GET_USER_INFO } from "./Actions";
+import { GET_PRODUCTS, GET_PRODUCT_DETAIL, GET_LINE_PRODUCTS, SET_LINE, FOOTER, SEARCH_SUCCESS, SET_SEARCH, ADD_TO_CART, REMOVE_FROM_CART, UPDATE_QUANTITY, UPDATE_CART_COUNT, REMOVE_ALL, TOTAL_CART , CREATE_USER, GET_USER_INFO, REFRESH_CART } from "./Actions";
 
 
 const initialState = {
@@ -87,6 +87,7 @@ switch (action.type) {
         };
         } else {
           console.log("Adding new item to the cart:", action.payload);
+          console.log("Shopping cart state:", state.shoppingCart);
           return {
             ...state,
             shoppingCart: [...state.shoppingCart, {...action.payload, quantity: 1 }],
@@ -167,7 +168,22 @@ switch (action.type) {
         userInfo: action.payload,
       };
 
-     
+      /*case REFRESH_CART:
+        const updatedCart = action.payload.map((cartItem) => {
+          const productInfo = state.products.find((product) => product.id === cartItem.productId);
+          return {
+            ...cartItem,
+            productInfo,
+          };
+        });
+      
+        return {
+          ...state,
+          shoppingCart: updatedCart,
+          cartCount: updatedCart.length,
+          totalCart: calculateTotalCart(updatedCart), // Implement a function to calculate total
+        };
+     */
 
     default:
         return state

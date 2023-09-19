@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts, getLineProducts, totalCart, createUser } from '../Redux/Actions';
-import Paginado from "./Cards/Paginado";
+import { getProducts, getLineProducts, totalCart, createUser, getUserInfo } from '../Redux/Actions';
+import Paginado from "./Cards/Paginado"; 
 import Navbar from "./Navbar";
 import Menu from "./Menu";
 import Footer from "./Footer";
@@ -22,7 +22,7 @@ export default function Home() {
   const selectedCategory = useSelector((state) => state.selectedCategory);
   const isSearch = useSelector((state) => state.isSearch);
   const isLine = useSelector((state) => state.isLine);
-
+  const userInfo = useSelector((state) => state.userInfo);
 //////////////////////
   // const [userObj, setUserObj] = useState(null);
    const [loading, setLoading] = useState(true);
@@ -48,6 +48,7 @@ export default function Home() {
       });
   }
 }, [dispatch, isAuthenticated, isLoading, user]);
+
 
 
   const filteredProducts = allProducts.filter(

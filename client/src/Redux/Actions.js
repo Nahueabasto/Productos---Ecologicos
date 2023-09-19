@@ -18,6 +18,7 @@ export const UPDATE_CART_COUNT = "UPDATE_CART_COUNT";
 export const REMOVE_ALL = "REMOVE_ALL";
 export const TOTAL_CART = "TOTAL_CART";
 export const ADD_TO_CART = "ADD_TO_CART";
+export const REFRESH_CART = "REFRESH_CART";
 
 export function getProducts(){
     return async function(dispatch){
@@ -115,27 +116,50 @@ export function getLineProducts(line) {
       }
 
     export function addToCart(item) {
+      
       return async function (dispatch) { 
-        return dispatch({
+        const { name, price, img, userId, id, quantity} = item
+        console.log("Item in addToCart action:", userId, id, quantity);
+        try {
+        await axios.post('http://localhost:3001/api/cart/add', { userId: userId, productId: id, quantity });
+
+        dispatch({
             type: ADD_TO_CART,
-            payload: item
+            payload: item,
         })
-      }
+
+        dispatch(refreshCart(userId));
+
+      } catch (error) {
+        console.error('Error while trying to add product to the cart', error)
+      } 
+    }
     }
 
-    export function removeFromCart(productId) {  
+    export function removeFromCart(item) {  
       return async function (dispatch) { 
+        const { productId, userId } = item;
+        console.log(productId, userId);
+        try {
+          await axios.delete(`http://localhost:3001/cart/delete`, { data: { productId, userId } });
+    
           return dispatch({
             type: REMOVE_FROM_CART,
             payload: productId
-        })     
+          });
+        } catch (error) {
+          console.error('Error removing item from cart:', error);
+        } 
       }
   }
 
-  export function removeAll(productId) {
+  export function removeAll(item) {
     return async function (dispatch, getState) { 
+      const { productId, userId } = item;
       const state = getState();
+      await axios.delete(`http://localhost:3001/cart/deleteall`, { data: { productId, userId } });
       const itemToRemove = state.shoppingCart.find((item) => item.id === productId);
+      
       if (itemToRemove) {
         const quantityToRemove = itemToRemove.quantity
     dispatch({
@@ -149,6 +173,7 @@ export function getLineProducts(line) {
 
 export function updateCartCount(increment) {
   return async function (dispatch) {
+
     return dispatch({
       type: UPDATE_CART_COUNT,
       payload: increment,
@@ -203,10 +228,27 @@ return dispatch({
           }
         };
       }
+
 export function totalCart(){
   return async function (dispatch) {
     return dispatch({
       type: TOTAL_CART,
     })
+  }
+}
+
+export function refreshCart(userId) {  
+  return async function (dispatch) { 
+    try {
+      const response = await axios.get(`http://localhost:3001/cart/${userId}`);
+      const updatedCart = response.data; // Assuming the response contains the updated cart
+
+      return dispatch({
+        type: REFRESH_CART,
+        payload: updatedCart
+      });
+    } catch (error) {
+      console.error('Error refreshing cart:', error);
+    } 
   }
 }
