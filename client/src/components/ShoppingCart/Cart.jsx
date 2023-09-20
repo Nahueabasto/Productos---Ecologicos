@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getDetail, addToCart, removeFromCart, updateCartCount, removeAll, updateQuantity, totalCart } from "../../Redux/Actions";
+import { getDetail, addToCart, removeFromCart, updateCartCount, removeAll, updateQuantity, totalCart, getUserInfo } from "../../Redux/Actions";
 import "./Cart.css"
 import trashIcon from "../../Fotos/trash.png";
 
@@ -11,6 +11,8 @@ export default function Cart({isOpen, onClose}){
   const [cartItems, setCartItems] = useState([]);
   const shoppingCart = useSelector((state) => state.shoppingCart);
   const totalCartValue = useSelector((state) => state.totalCart);
+  const [addedItem, setAddedItem] = useState(null);
+  const userInfo = useSelector((state) => state.userInfo);
 
   //se actualiza cuando hay modificaciones al shopping cart.
   useEffect(() => {
@@ -22,6 +24,16 @@ export default function Cart({isOpen, onClose}){
     setCartItems(shoppingCart);
   }, [shoppingCart]);
 
+  useEffect(() => {
+    setCartItems(shoppingCart);
+    if (addedItem) {
+      // Abrir el carrito cuando se agrega un item
+      onClose(); // Close the cart modal
+      setCartItems([...cartItems, addedItem]); // Add the item to the cart items
+      setAddedItem(null); // Reset added item after processing
+    }
+  }, [shoppingCart, addedItem, onClose]);
+
   const handleUpdateQuantity = (itemId) => {
     console.log("Updating quantity:", itemId);
     dispatch(
@@ -32,14 +44,20 @@ export default function Cart({isOpen, onClose}){
 
   const handleRemoveFromCart = (productId) => {
     dispatch(
-      removeFromCart(productId)
+      removeFromCart({
+        productId: productId,
+        userId: userInfo[0].id
+      })
       );
   };
 
 
   const handleRemoveAll = (productId) => {
     dispatch(
-      removeAll(productId)
+      removeAll({
+        productId: productId,
+        userId: userInfo[0].id
+      })
       );
   };
 

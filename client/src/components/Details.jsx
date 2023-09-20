@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getDetail, addToCart, removeFromCart, updateCartCount, getReview, calculateAverageRating } from "../Redux/Actions";
+import { getDetail, addToCart, removeFromCart, updateCartCount, getUserInfo, getReview } from "../Redux/Actions";
 import "./Details.css";
 import Navbar from "./Navbar";
 import Menu from "./Menu";
 import Footer from "./Footer";
+import AddedToCartModal from "./ShoppingCart/AddedToCartModal";
+import useAuthData from "./ShoppingCart/useAuthData"; // Import the custom hook
+
 import StarRatings from 'react-star-ratings';
 import Review from "./Reviews/Reviews";
 import Rating from "./Reviews/Rating";
@@ -16,18 +19,25 @@ export default function ProductDetail() {
   const details = useSelector((state) => state.detail);
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.shoppingCart);
+  const userInfo = useSelector((state) => state.userInfo);
+  console.log(details);
   const reviews = useSelector((state) => state.reviews);
   
  
 
   const [rating, setRating] = useState(0);
 
+  const [addedItem, setAddedItem] = useState(null);
+
   const [imageUrls, setImageUrls] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
-
+  const [showModal, setShowModal] = useState(false);
+  //const userInfo = useSelector((state) => state.userInfo);
+  
 
   useEffect(() => {
     dispatch(getDetail(id));
+    dispatch(getUserInfo());
     dispatch(getReview(id))
   }, [dispatch, id]);
 
@@ -49,22 +59,39 @@ export default function ProductDetail() {
   }
 
   const handleAddToCart = () => {
+    //console.log("User Info:", userInfo);
     console.log("Adding item to cart:", details);
+    const newItem = {
+      id: details.id,
+      name: details.name,
+      price: details.price,
+      img: imageUrls[0],
+      quantity: 1,
+      //userId: userId,
+    };
+    //console.log("New Item:", newItem);
+    setAddedItem(newItem); // Set added item
+    setShowModal(true); // Show modal
     dispatch(
       addToCart({
         id: details.id,
         name: details.name,
         price: details.price,
-        img: imageUrls[0]
-      }),
+        img: imageUrls[0],
+        quantity: 1,
+        userId: userInfo[0].id,
+      })
       )
     //dispatch(updateCartCount(true))
   }
 
   const handleRemoveFromCart = (productId) => {
     dispatch(
-      removeFromCart(productId)
-      );
+      removeFromCart({
+        productId: productId,
+        userId: userInfo[0].id
+      })
+  );
       //dispatch(updateCartCount(false));
   }
 
@@ -117,6 +144,9 @@ export default function ProductDetail() {
           <div className="buttons-container">
           <button onClick={handleAddToCart}>Add to Cart</button>
           <button onClick={() => handleRemoveFromCart(details.id)}>Remove from Cart</button>
+          <AddedToCartModal  isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        addedProduct={addedItem} />
           </div>
           </div>
         </div>
