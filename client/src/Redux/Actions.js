@@ -20,8 +20,8 @@ export const TOTAL_CART = "TOTAL_CART";
 export const ADD_TO_CART = "ADD_TO_CART";
 export const POST_REVIEW = "POST_REVIEW";
 export const GET_REVIEWS = "GET_REVIEWS";
-export const CALCULATE_AVERAGE_RATING = "CALCULATE_AVERAGE_RATING";
-export const SORT_PRODUCTS_BY_RATING = "SORT_PRODUCTS_BY_RATING";
+export const GET_BUYS = "GET_BUYS";
+
 
 export function getProducts(){
     return async function(dispatch){
@@ -175,20 +175,20 @@ return dispatch({
 }
 
 
-      export function getUserInfo() {
-        return async function (dispatch) {
-          try {
-          let user = await axios.get("/users");
+export function getUserInfo() {
+  return async function (dispatch) {
+    try {
+    let user = await axios.get("/users");
 
-            dispatch({
-              type: GET_USER_INFO,
-              payload: user.data,
+    dispatch({
+    type: GET_USER_INFO,
+        payload: user.data,
             });
-          } catch (error) {
-            console.log("ERROR", error);
+            } catch (error) {
+               console.log("ERROR", error);
+              }
+            };
           }
-        };
-      }
       
 export function totalCart(){
   return async function (dispatch) {
@@ -228,13 +228,14 @@ export function getReview(id) {
   };
 }
 
-export function calculateAverageRating(productId) {
+
+export function getBuys() {
   return async function (dispatch) {
     try {
-      console.log(productId);
-      const response = await axios.get(`/products/${productId}/average-rating`); 
+      //console.log(id);
+      const response = await axios.get(`/Buys`); 
       dispatch({
-        type: CALCULATE_AVERAGE_RATING,
+        type: GET_BUYS,
         payload: response.data,
       });
     } catch (error) {
@@ -242,9 +243,4 @@ export function calculateAverageRating(productId) {
     }
   };
 }
-
-
-export const sortProductsByRating = () => ({
-  type: SORT_PRODUCTS_BY_RATING,
-});
 

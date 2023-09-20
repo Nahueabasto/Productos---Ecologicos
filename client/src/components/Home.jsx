@@ -11,7 +11,6 @@ import "./Home.css";
 import { useParams } from "react-router-dom";
 import Recommended from "./Cards/Recommended";
 import Offer from "./Cards/Offer";
-
 import { useAuth0 } from "@auth0/auth0-react";
 
 

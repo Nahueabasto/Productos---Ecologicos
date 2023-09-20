@@ -14,11 +14,9 @@ const createUser = async function (email, name, fullname, profile, avatar) {
     const newUser = await User.create({
       email: email,
       name: name,
-     // role: role,
       fullname: fullname,
       profile: profile,
       avatar: avatar,
-      //birthdate: birthdate
     });
 
     return `New User ${email} was created successfully`

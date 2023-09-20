@@ -2,7 +2,6 @@ const axios = require("axios");
 const { Products, Line, Brand } = require("../db");
 
 
-
 const getApi = async () => {
   
 
