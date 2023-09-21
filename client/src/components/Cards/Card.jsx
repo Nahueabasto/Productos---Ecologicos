@@ -17,9 +17,6 @@ export default function Card({ id, images, name, price }) {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getUserInfo());
-  }, []);
   
   const handleAddToCart = () => {
     console.log("Adding item to cart:");

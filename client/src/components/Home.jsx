@@ -72,7 +72,6 @@ export default function Home() {
 ///////
   useEffect(() => {
     dispatch(getProducts());
-    dispatch(getUserInfo())
   }, [dispatch]);
 
   useEffect(() => {
