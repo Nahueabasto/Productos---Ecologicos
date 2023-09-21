@@ -23,7 +23,7 @@ const productById = async function(productId){
       if(findProduct){
          return findProduct;
       }else{
-        throw new Error(`The wine with the id ${productId} does not exist in the database`)
+        throw new Error(`The product with the id ${productId} does not exist in the database`)
       }
 } 
 

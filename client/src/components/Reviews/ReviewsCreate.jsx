@@ -36,10 +36,11 @@ export default function ReviewsCreate({idProduct, userEmail}){
       <h2>Calificación con estrellas</h2>
       <StarRatings
         rating={rating}
-        starRatedColor="green" // Cambia el color de las estrellas seleccionadas
+        starRatedColor="dodgerblue" // Cambia el color de las estrellas seleccionadas
         changeRating={changeRating}
         numberOfStars={5} // Número de estrellas en total
         name='rating' // Nombre para el grupo de calificación (importante si tienes varios en la misma página)
+        style={{ color: 'dodgerblue' }}
       />
       <p>Calificación: {rating}</p>
     </div>

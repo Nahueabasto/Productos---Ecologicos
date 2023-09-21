@@ -1,0 +1,21 @@
+.compra{
+  margin-top: 10px;
+  margin-right: 850px;
+}
+
+.compras{
+  max-width: 1300px;
+  
+  
+  padding: 0 80px 0 80px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 0px;
+  margin-top: 10px;
+}
+
+
+
+
+  
+  

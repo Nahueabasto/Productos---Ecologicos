@@ -1,4 +1,4 @@
-import { GET_PRODUCTS, GET_PRODUCT_DETAIL, GET_LINE_PRODUCTS, SET_LINE, FOOTER, SEARCH_SUCCESS, SET_SEARCH, ADD_TO_CART, REMOVE_FROM_CART, UPDATE_QUANTITY, UPDATE_CART_COUNT, REMOVE_ALL, TOTAL_CART , CREATE_USER, GET_USER_INFO, POST_REVIEW, REFRESH_CART, GET_REVIEWS } from "./Actions";
+import { GET_PRODUCTS, GET_PRODUCT_DETAIL, GET_LINE_PRODUCTS, SET_LINE, FOOTER, SEARCH_SUCCESS, SET_SEARCH, ADD_TO_CART, REMOVE_FROM_CART, UPDATE_QUANTITY, UPDATE_CART_COUNT, REMOVE_ALL, TOTAL_CART , CREATE_USER, GET_USER_INFO, POST_REVIEW, GET_REVIEWS, REFRESH_CART, GET_BUYS } from "./Actions";
 
 
 const initialState = {
@@ -17,6 +17,7 @@ const initialState = {
     cartCount: 0,
     totalCart: 0,
     reviews: [],
+    buys: [], 
 }
 
 function reducer (state = initialState, action) {
@@ -194,6 +195,12 @@ switch (action.type) {
           ...state,
           reviews: action.payload,
         }
+
+        case GET_BUYS:
+          return{
+            ...state,
+           buys: action.payload,
+          }
 
     default:
         return state

@@ -1,0 +1,30 @@
+.cardd{
+    width: 1200px;
+    height: 150px;
+    padding: 0 20px; 
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 0px; /* Reducir el espacio entre las columnas */
+    
+    margin-top: 20px;
+    align-items: center; 
+    box-shadow: 0 0 2px 0px rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+}
+  
+.name{
+    width: 100%; /* Ocupar todo el ancho disponible */
+    text-align: left; /* Puedes ajustar esto según sea necesario */
+    margin-right: 950px;
+    margin-top: 50px;
+}
+
+@media screen and (max-width: 700px) {
+    .cardd {
+        grid-template-columns: 1fr 2fr;
+        display: grid; 
+       
+    } 
+  
+    /* Agrega un margen interno para los elementos dentro de las columnas */
+}

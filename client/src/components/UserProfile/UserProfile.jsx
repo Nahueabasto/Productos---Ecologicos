@@ -1,27 +1,31 @@
 import React, { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
-import { getUserInfo } from "../../Redux/Actions";
+import { getUserInfo, getBuys } from "../../Redux/Actions";
 import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../Navbar";
 import Menu from "../Menu";
 import Footer from "../Footer";
 import "./UserProfile.css"
 
+
+import ReviewsCreate from "../Reviews/ReviewsCreate";
+
 const UserProfile = ({ id }) => {
   const dispatch = useDispatch();
   const { user } = useAuth0();
   const userInfo = useSelector((state) => state.userInfo);
+  const buys = useSelector((state) => state.buys);
   const [userObj, setUserObj] = useState(null);
 
-  //console.log(userInfo)
+  console.log(buys)
 
   useEffect(() => {
     dispatch(getUserInfo(id));
+    dispatch(getBuys())
   }, [dispatch, id]);
 
   
-
   useEffect(() => {
     // Si userInfo y user están disponibles, busca el usuario que coincide con el email
     if (userInfo && user) {
@@ -48,7 +52,6 @@ const UserProfile = ({ id }) => {
         </div>
         <div className="mi-cuenta">Mi cuenta</div>
         
-
         <div className="containerr">
           <div className="contenedor-1">
             <h5 className="card-title-divider">Datos</h5>
@@ -70,22 +73,27 @@ const UserProfile = ({ id }) => {
           
           <div >
           <div className="contenedor-2">
-          <h5 className="card-title-dividerr">Mis compras</h5>
-          <div className="primera-compra"> ¡Hace tu primera compra! </div>
-          <Link to="/" className="black-button"> IR A LA TIENDA </Link>
-        </div>
-        </div>
-        </div>
+  <h5 className="card-title-dividerr">Mis compras</h5>
+  {user && buys && buys.some(buy => buy.user && buy.user.email === user.email) ? (
+    <Link to="/UserInfo" className="blue-button">MIS COMPRAS</Link>
+  ) : (
+    <div className="primera-compra">¡Hace tu primera compra!</div>
+  )}
+  <Link to="/" className="black-button">IR A LA TIENDA</Link>
+</div>
 
+        </div>
+        </div>
         <div>
           <Footer />
         </div>
+        <div>
+          <ReviewsCreate />
+        </div>
       </div>
-    
   );
 };
 
 export default UserProfile;
-
 
   

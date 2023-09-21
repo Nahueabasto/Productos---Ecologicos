@@ -26,11 +26,12 @@ function App() {
           <Route exact path="/" component={Home} />    
           <Route exact path="/information" component={Information} />
           <Route exact path="/userprofile" component={UserProfile} />
+          <Route exact path="/UserInfo" component={UserInfo} />
           <Route exact path="/:id" render={({match}) => <ProductDetail id={match.params.id}/>} />
           <Route exact path="/products/:lineParam" component={Home} />
           <Route exact path="/category/:categoryName" component={LineProducts} />
           <Route exact path="/shoppingcart" component={Cart} />
-
+          
         </Switch>
       </div>
     </BrowserRouter>
