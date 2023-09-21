@@ -11,7 +11,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const domain = "dev-kfynii0opohfkfjk.us.auth0.com";
 const clientId = "5aYZdWgABDmYkBSjHTUPrhw9CuZ1RKcQ";
 
-ReactDOM.render(
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
   <React.StrictMode>
     <Provider store={store}>
       <Auth0Provider
@@ -25,7 +26,6 @@ ReactDOM.render(
       </Auth0Provider>
     </Provider>
   </React.StrictMode>,
-  document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function
