@@ -17,3 +17,4 @@ const createBuys = async function (productId, userId) {
 
 
 module.exports = { createBuys };
+

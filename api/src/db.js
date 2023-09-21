@@ -55,6 +55,9 @@ Buys.belongsTo(Products);
 User.hasMany(Buys);
 Buys.belongsTo(User);
 
+// Cart.hasMany(Buys);
+// Buys.belongsTo(Cart);
+
 User.belongsToMany(Products, { through: Cart });
 Products.belongsToMany(User, { through: Cart });
 
@@ -62,4 +65,4 @@ module.exports = {
   ...sequelize.models, 
   conn: sequelize,     
 };
-
+// vinculacion entre product y user, el cart puede tener muchas entradas que pueden ser del mismo user. el carrito esta vinculado con un user, con la cantidad de product que sea, para traer el product de cada persona traer todos productos que coincidan con ese id de usuario
