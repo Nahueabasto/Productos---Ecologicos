@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getDetail, addToCart, removeFromCart, updateCartCount, getUserInfo } from "../Redux/Actions";
-import { getDetail, addToCart, removeFromCart, updateCartCount, getReview, calculateAverageRating } from "../Redux/Actions";
+import { getDetail, getReview, addToCart, removeFromCart, updateCartCount, getUserInfo } from "../Redux/Actions";
 import "./Details.css";
 import Navbar from "./Navbar";
 import Menu from "./Menu";
