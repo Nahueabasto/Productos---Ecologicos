@@ -7,9 +7,8 @@ import Navbar from "../Navbar";
 import Menu from "../Menu";
 import Footer from "../Footer";
 import "./UserProfile.css"
-
-
 import ReviewsCreate from "../Reviews/ReviewsCreate";
+
 
 const UserProfile = ({ id }) => {
   const dispatch = useDispatch();

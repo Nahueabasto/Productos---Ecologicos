@@ -20,35 +20,29 @@ export default function UserInfo({ id }) {
   }, [dispatch, id]);
 
   // Filtrar los productos comprados por el usuario actual
-  const userBuys = user ? buys.filter((buy) => buy.user.email === user.email) : [];
+  const userBuys = user ? buys.filter((buy) => buy.user?.email === user.email) : [];
 
   return (
-
     <div>
       <div>
-          <Navbar />
-        </div>
-        <div>
-          <Menu />
-        </div>
-        <h5 className="compra">Compras</h5>
-        <div className="compras">
-    
-      {userBuys.map((buy) => (
-        <CartCard 
-        key={buy.id}
-        name={buy.product.name}
-        images={buy.product.images}
-        />
-      ))}
-  
-    </div>
-
-    <div>
-          <Footer />
-        </div>
+        <Navbar />
+      </div>
+      <div>
+        <Menu />
+      </div>
+      <h5 className="compra">Compras</h5>
+      <div className="compras">
+        {userBuys.map((buy) => (
+          <CartCard 
+            key={buy.id}
+            name={buy.product.name}
+            images={buy.product.images}
+          />
+        ))}
+      </div>
+      <div>
+        <Footer />
+      </div>
     </div>
   );
 }
-
-

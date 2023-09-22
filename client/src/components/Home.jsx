@@ -101,10 +101,9 @@ export default function Home() {
           {/* Show the Paginado component only if isSearch is true */}
           {isSearch && <Paginado cards={filteredProducts} />}
         </div>
-        <div>
-          {/* Show the Recommended component only if isSearch is false */}
-          {!isSearch && <Recommended cards={filteredProducts} showAll={true} />}
-        </div>
+         <div>
+{!isSearch && <Recommended cards={filteredProducts} showAll={true} />}
+</div> 
         <div>
           {/* Show the Offer component only if isSearch is false */}
           {!isSearch && <Offer cards={filteredProducts} showAll={true} />}
@@ -116,6 +115,8 @@ export default function Home() {
     </div>
   );
 }
+
+
 
 
 
