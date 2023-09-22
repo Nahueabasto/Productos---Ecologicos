@@ -16,7 +16,7 @@ server.use(cookieParser());
 server.use(morgan('dev'));
 server.use((req, res, next) => {
   // Permite el origen de localhost y economia-theta.vercel.app
-  const allowedOrigins = ['https://productos-ecologicos-rlcf7mpyx-nahueabasto.vercel.app/', 'http://localhost:3000'];
+  const allowedOrigins = ['https://productos-ecologicos.vercel.app/', 'http://localhost:3000'];
   const origin = req.headers.origin;
   
   if (allowedOrigins.includes(origin)) {

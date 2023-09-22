@@ -5,11 +5,9 @@ import ProductDetail from './components/Details';
 import Information from './components/Information';
 import UserProfile from './components/UserProfile/UserProfile';
 import LineProducts from './components/LineProducts';
-import UserInfo from './components/UserProfile/UserInfo';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Cart from "./components/ShoppingCart/Cart";
 import axios from 'axios';
-
 
 function App() {
 
