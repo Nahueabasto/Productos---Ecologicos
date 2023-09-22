@@ -14,7 +14,7 @@ function App() {
   if (window.location.hostname === 'localhost') {
     axios.defaults.baseURL = 'http://localhost:3001';
   } else {
-    axios.defaults.baseURL = 'back';
+    axios.defaults.baseURL = 'https://productos-ecologicos-8pma.vercel.app/';
   }
   
   return (
